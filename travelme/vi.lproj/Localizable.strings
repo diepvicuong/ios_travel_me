@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  travelme
+
+  Created by DiepViCuong on 1/17/21.
+  
+*/
+
+//Login Controller
+"Login" = "Đăng nhập";
+"Don't have an account? Sign up" = "Chưa có tài khoản? Tạo mới";
+
+//Signup Controller
+"Sign up to enjoy your journey" = "Tạo tài khoản để khám phá hành trình bản thân";
+"Mobile number" = "Số điện thoại";
+"Full name" = "Họ tên";
+"Username" = "Tên đăng nhập";
+"Password" = "Mật khẩu";
+"Log in with Gmail" = "Đăng nhập với Gmail";
+"Sign up" = "Tạo tài khoản";
