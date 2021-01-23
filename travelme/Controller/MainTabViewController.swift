@@ -13,12 +13,11 @@ class MainTabViewController: AbstractViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Home".localized()
 
-        navigationController?.navigationBar.topItem?.title = "Home".localized()
-        
-        navigationController?.navigationBar.topItem?.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutTapped))
-        
-        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutTapped))
+    
     }
     
     @objc func logoutTapped(){

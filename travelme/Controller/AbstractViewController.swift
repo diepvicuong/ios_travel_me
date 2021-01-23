@@ -51,12 +51,14 @@ class AbstractViewController: UIViewController {
     }
     
     func changeRootPage(vc: UIViewController) {
-        if let navigationController = self.navigationController{
-            var vcArray = navigationController.viewControllers
-            vcArray.removeAll()
-            vcArray.append(vc)
-            navigationController.setViewControllers(vcArray, animated: false)
-        }
+//        if let navigationController = self.navigationController{
+//            var vcArray = navigationController.viewControllers
+//            vcArray.removeAll()
+//            vcArray.append(vc)
+//            navigationController.setViewControllers(vcArray, animated: false)
+//        }
+        
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
     }
 
 }
@@ -65,13 +67,13 @@ class AbstractViewController: UIViewController {
 extension AbstractViewController{
     func gotoHome(){
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = mainStoryboard.instantiateViewController(withIdentifier: "MainTabViewController") as! MainTabViewController
+        let vc = mainStoryboard.instantiateViewController(withIdentifier: "MainTabBarController") as! UITabBarController
         changeRootPage(vc: vc)
     }
     
     func gotoLogin(){
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginController
+        let vc = mainStoryboard.instantiateViewController(withIdentifier: "LoginNavigationController") as! UINavigationController
         changeRootPage(vc: vc)
     }
 }

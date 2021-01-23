@@ -32,18 +32,17 @@ class WelcomeViewController: AbstractViewController {
     
     private func checkLoginGmail(){
         if let user = GIDSignIn.sharedInstance()?.currentUser{
-            
+        
             // User signed in
             print("Gmail Signed in")
             gotoHome()
         }else{
             // User signed out
             if FirebaseAuthManager.shareInstance.isHasUser(){
-                print("Firebase signed in")
+                print("Firebase sign in")
                 gotoHome()
-                return
             }
-            print("The user has not signed in before or they have since signed out.")
+            print("Signed out")
             gotoLogin()
         }
     }

@@ -53,8 +53,10 @@ class LoginController: AbstractViewController {
     
     private func initContent(){
         // Use this if you use navigation bar without navigation controller.
-        navigationController?.navigationBar.topItem?.title = "Login".localized()
+//        navigationController?.navigationBar.topItem?.title = "Login".localized()
 
+        self.title = "Login"
+        
         lbAppName.text = "Connected Car".uppercased()
         btnLogin.setTitle("Login".localized(), for: .normal)
         btnSignUp.setTitle("Don't have an account? Sign up".localized(), for: .normal)
