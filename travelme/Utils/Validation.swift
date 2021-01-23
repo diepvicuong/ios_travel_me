@@ -10,14 +10,14 @@ import Foundation
 class Validation {
     func validateName(name: String) ->Bool {
         // Length be 18 characters max and 3 characters minimum, you can always modify.
-        let nameRegex = "^\\w{3,18}$"
+        let nameRegex = "(?<! )[-a-zA-Z' ]{3,26}"
         let trimmedString = name.trimmingCharacters(in: .whitespaces)
         let validateName = NSPredicate(format: "SELF MATCHES %@", nameRegex)
         let isValidateName = validateName.evaluate(with: trimmedString)
         return isValidateName
     }
-    func validaPhoneNumber(phoneNumber: String) -> Bool {
-        let phoneNumberRegex = "^[6-9]\\d{9}$"
+    func validatePhoneNumber(phoneNumber: String) -> Bool {
+        let phoneNumberRegex = "^[0-9]\\d{10}$"
         let trimmedString = phoneNumber.trimmingCharacters(in: .whitespaces)
         let validatePhone = NSPredicate(format: "SELF MATCHES %@", phoneNumberRegex)
         let isValidPhone = validatePhone.evaluate(with: trimmedString)

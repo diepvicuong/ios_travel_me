@@ -212,6 +212,12 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
+  - AMPopTip (4.5.2)
+  - AppAuth (1.4.0):
+    - AppAuth/Core (= 1.4.0)
+    - AppAuth/ExternalUserAgent (= 1.4.0)
+  - AppAuth/Core (1.4.0)
+  - AppAuth/ExternalUserAgent (1.4.0)
   - BoringSSL-GRPC (0.0.7):
     - BoringSSL-GRPC/Implementation (= 0.0.7)
     - BoringSSL-GRPC/Interface (= 0.0.7)
@@ -277,6 +283,10 @@ PODS:
     - nanopb (~> 2.30906.0)
   - GoogleDataTransport (8.1.0):
     - nanopb (~> 2.30906.0)
+  - GoogleSignIn (5.0.2):
+    - AppAuth (~> 1.2)
+    - GTMAppAuth (~> 1.0)
+    - GTMSessionFetcher/Core (~> 1.1)
   - GoogleUtilities/AppDelegateSwizzler (7.2.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -320,7 +330,14 @@ PODS:
     - BoringSSL-GRPC (= 0.0.7)
     - gRPC-Core/Interface (= 1.28.2)
   - gRPC-Core/Interface (1.28.2)
+  - GTMAppAuth (1.1.0):
+    - AppAuth/Core (~> 1.4)
+    - GTMSessionFetcher (~> 1.4)
+  - GTMSessionFetcher (1.5.0):
+    - GTMSessionFetcher/Full (= 1.5.0)
   - GTMSessionFetcher/Core (1.5.0)
+  - GTMSessionFetcher/Full (1.5.0):
+    - GTMSessionFetcher/Core (= 1.5.0)
   - IQKeyboardManagerSwift (6.5.6)
   - leveldb-library (1.22)
   - MaterialComponents/AnimationTiming (119.1.2)
@@ -389,21 +406,33 @@ PODS:
     - NVActivityIndicatorView/Base (= 5.1.1)
   - NVActivityIndicatorView/Base (5.1.1)
   - PromisesObjC (1.2.12)
+  - SwiftIcons (3.0)
+  - SwiftMessages (9.0.0):
+    - SwiftMessages/App (= 9.0.0)
+  - SwiftMessages/App (9.0.0)
+  - Whisper (6.1.0)
 
 DEPENDENCIES:
+  - AMPopTip
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Firestore
+  - GoogleSignIn
   - IQKeyboardManagerSwift
   - "MaterialComponents/TextControls+FilledTextAreas"
   - "MaterialComponents/TextControls+FilledTextFields"
   - "MaterialComponents/TextControls+OutlinedTextAreas"
   - "MaterialComponents/TextControls+OutlinedTextFields"
   - NVActivityIndicatorView
+  - SwiftIcons (~> 3.0)
+  - SwiftMessages
+  - Whisper
 
 SPEC REPOS:
   trunk:
     - abseil
+    - AMPopTip
+    - AppAuth
     - BoringSSL-GRPC
     - Firebase
     - FirebaseAnalytics
@@ -414,9 +443,11 @@ SPEC REPOS:
     - FirebaseInstallations
     - GoogleAppMeasurement
     - GoogleDataTransport
+    - GoogleSignIn
     - GoogleUtilities
     - "gRPC-C++"
     - gRPC-Core
+    - GTMAppAuth
     - GTMSessionFetcher
     - IQKeyboardManagerSwift
     - leveldb-library
@@ -425,9 +456,14 @@ SPEC REPOS:
     - nanopb
     - NVActivityIndicatorView
     - PromisesObjC
+    - SwiftIcons
+    - SwiftMessages
+    - Whisper
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
+  AMPopTip: f977026dee6cc5523547669d3574ef242f0fe024
+  AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   Firebase: 78e8dd2e39d653de6270432ad84fe8b59f7bf4e8
   FirebaseAnalytics: 7f165a56dea86ddd5b8ce02af3bee982c683405c
@@ -438,9 +474,11 @@ SPEC CHECKSUMS:
   FirebaseInstallations: 30646fc9a61c6f4ee3cd7a8b7231721842b40c95
   GoogleAppMeasurement: 89e1a64593f968713b0506ba1b53b38a154bf9a5
   GoogleDataTransport: 116c84c4bdeb76be2a7a46de51244368f9794eab
+  GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
   GoogleUtilities: d866834472f1324d080496bc67ab3ce5d0d46027
   "gRPC-C++": 13d8ccef97d5c3c441b7e3c529ef28ebee86fad2
   gRPC-Core: 4afa11bfbedf7cdecd04de535a9e046893404ed5
+  GTMAppAuth: 197a8dabfea5d665224aa00d17f164fc2248dab9
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
@@ -449,7 +487,10 @@ SPEC CHECKSUMS:
   nanopb: 1bf24dd71191072e120b83dd02d08f3da0d65e53
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  SwiftIcons: 3b748e57d9eee0c7c8d3bdbf2d742c0b1b4c6172
+  SwiftMessages: 55274ca3a239062398603008ed81924cfd1fe798
+  Whisper: 6869ae85284ae2ba0aa4c7d8a826be6436409fed
 
-PODFILE CHECKSUM: 6537e3bc0a2dd0f2bc9db5764781dc2a268e9c53
+PODFILE CHECKSUM: 2abf8ff515c5a4fabb84e10d2f0dd84a310d6d09
 
 COCOAPODS: 1.10.0

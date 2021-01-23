@@ -10,6 +10,9 @@ target 'travelme' do
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
 
+  # Google SDK
+  pod 'GoogleSignIn'
+  
   # Material textfield
   pod 'MaterialComponents/TextControls+FilledTextAreas'
   pod 'MaterialComponents/TextControls+FilledTextFields'
@@ -21,6 +24,18 @@ target 'travelme' do
   
   # https://github.com/ninjaprox/NVActivityIndicatorView
   pod 'NVActivityIndicatorView'
+  
+  # https://github.com/andreamazz/AMPopTip
+  pod 'AMPopTip'
+  
+  # https://github.com/ranesr/SwiftIcons
+  pod 'SwiftIcons', '~> 3.0'
+  
+  # https://github.com/hyperoslo/Whisper
+  pod 'Whisper'
+
+  # https://github.com/SwiftKickMobile/SwiftMessages
+  pod 'SwiftMessages'
   
   target 'travelmeTests' do
     inherit! :search_paths

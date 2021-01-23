@@ -12,6 +12,8 @@
 	<string>777337854722</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
 	<key>BUNDLE_ID</key>
 	<string>com.me.travelme</string>
 	<key>PROJECT_ID</key>
@@ -19,15 +21,13 @@
 	<key>STORAGE_BUCKET</key>
 	<string>travelme-c2cba.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true></true>
-	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:777337854722:ios:95eb48f0a9c09d5bc9401b</string>
 </dict>
