@@ -38,7 +38,7 @@ class AbstractViewController: UIViewController {
 
         let frame = CGRect(x: (xAxis - 50/2), y: (yAxis - 50/2), width: 50, height: 50)
         activityIndicator = NVActivityIndicatorView(frame: frame)
-        activityIndicator.type = .ballClipRotate // add your type
+        activityIndicator.type = .pacman // add your type
         activityIndicator.color = UIColor.black // add your color
 
         self.view.addSubview(activityIndicator)

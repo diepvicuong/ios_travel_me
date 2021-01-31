@@ -6,12 +6,16 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 class User{
-    var username: String = ""
-    var email: String = ""
-    var password: String = ""
-
-    var phoneNumber: String? = nil
-    var fullName: String? = nil
+    let uid: String
+    let username: String
+    let profileImageUrl: String?
+    
+    init(uid: String, dictionary: [String: Any]) {
+        self.uid = uid
+        self.username = dictionary["username"] as? String ?? ""
+        self.profileImageUrl = dictionary["profileImageUrl"] as? String ?? ""
+    }
 }

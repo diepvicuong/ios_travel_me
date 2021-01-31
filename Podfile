@@ -9,6 +9,8 @@ target 'travelme' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+  pod 'Firebase/Storage'
+  pod 'Firebase/Database'
 
   # Google SDK
   pod 'GoogleSignIn'
@@ -31,11 +33,18 @@ target 'travelme' do
   # https://github.com/ranesr/SwiftIcons
   pod 'SwiftIcons', '~> 3.0'
   
+  # Toast notification
   # https://github.com/hyperoslo/Whisper
   pod 'Whisper'
 
   # https://github.com/SwiftKickMobile/SwiftMessages
   pod 'SwiftMessages'
+    
+  # SpPermission
+  # https://github.com/varabeis/SPPermissions
+  pod 'SPPermissions/Camera'
+  pod 'SPPermissions/Location'
+  pod 'SPPermissions/PhotoLibrary'
   
   target 'travelmeTests' do
     inherit! :search_paths

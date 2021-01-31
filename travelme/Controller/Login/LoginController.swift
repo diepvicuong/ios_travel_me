@@ -25,6 +25,9 @@ class LoginController: AbstractViewController {
         // Do any additional setup after loading the view.
         initLayout()
         initContent()
+        
+        //check login with Gmail
+        checkLoginGmail()
     }
 
     private func initLayout(){
@@ -47,8 +50,12 @@ class LoginController: AbstractViewController {
         //Register notification after login-in with Gmail
         NotificationCenter.default.addObserver(self, selector: #selector(userDidLoginGoogle(_:)), name: .signInGoogleCompleted, object: nil)
     
-        //check login with Gmail
-        checkLoginGmail()
+        // Hide keyboard while tap outside
+        let hideKBTap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard(_:)))
+        // Using this attribute if dealing with tableviews
+        hideKBTap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(hideKBTap)
+
     }
     
     private func initContent(){
@@ -86,6 +93,11 @@ class LoginController: AbstractViewController {
     
     @objc private func userDidLoginGoogle(_ notification: Notification){
         checkLoginGmail()
+    }
+    
+    @objc func hideKeyboard(_ sender: UITapGestureRecognizer){
+        tfEmail.resignFirstResponder()
+        tfPassword.resignFirstResponder()
     }
     
     @IBAction func SignUpBtnTapped(_ sender: UIButton) {
@@ -131,10 +143,10 @@ class LoginController: AbstractViewController {
         switch tag {
         case .Email:
             guard let email = sender.text else {return}
-            if validation.validateEmailId(emailID: email) == false{
-                tfEmail.showPopTip(isShow: true, text: "Invalid email")
-            }else{
+            if email.isEmpty || validation.validateEmailId(emailID: email){
                 tfEmail.showPopTip(isShow: false)
+            }else{
+                tfEmail.showPopTip(isShow: true, text: "Invalid email")
             }
         case .Password:
             guard let password = sender.text else {return}

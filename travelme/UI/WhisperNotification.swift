@@ -21,8 +21,8 @@ class WhisperNotification {
         Whisper.show(whisper: message, to: navController, action: .show)
     }
     
-//    static func showAnouncement(title: String,subtitle: String, navController: UINavigationController, completion: (() -> Void)? = nil){
-//        let announcement = Announcement(title: title, subtitle: subtitle, image: UIImage(named: NotificationConf.NOTIFICATION_ICON), duration: 5, action: completion)
-//        Whisper.show(shout: announcement, to: navController, completion: completion)
-//    }
+    static func showAnouncement(title: String,subtitle: String, navController: UINavigationController, completion: (() -> Void)? = nil){
+        let announcement = Announcement(title: title, subtitle: subtitle, image: UIImage(named: "notification-alert"), duration: 5, action: completion)
+        Whisper.show(shout: announcement, to: navController, completion: completion)
+    }
 }

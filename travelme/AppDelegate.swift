@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Google sign-in
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+//        GIDSignIn.sharedInstance().clientID = "777337854722-jqav78nrujrsdvnfovg5skek87g64r3t.apps.googleusercontent.com"
         
         GIDSignIn.sharedInstance().delegate = self
         
@@ -72,6 +73,9 @@ extension AppDelegate: GIDSignInDelegate{
                 print("Error occurs when authenticate with Firebase: \(error.localizedDescription)")
             }
                 
+            UserRepository.sharedInstance.uploadUser(withUID: authResult!.user.uid, username: ""){
+                debugPrint("Upload user from gmail success")
+            }
             // Post notification after user successfully sign in
             NotificationCenter.default.post(name: .signInGoogleCompleted, object: nil)
         }

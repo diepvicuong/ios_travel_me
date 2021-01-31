@@ -59,6 +59,13 @@ class SignupViewController: AbstractViewController {
         tfPassword.rightView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(passwordHintTapped)))
         tfPassword.rightView?.isUserInteractionEnabled = true
         tfPassword.delegate = self
+        
+        // Hide keyboard while tap outside
+        let hideKBTap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard(_:)))
+        // Using this attribute if dealing with tableviews
+        hideKBTap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(hideKBTap)
+        
     }
     
     func initContent(){
@@ -94,6 +101,12 @@ class SignupViewController: AbstractViewController {
             
         }
     }
+    @objc func hideKeyboard(_ sender: UITapGestureRecognizer){
+        tfEmail.resignFirstResponder()
+        tfPassword.resignFirstResponder()
+        tfFullname.resignFirstResponder()
+        tfPhoneNumber.resignFirstResponder()
+    }
     
     @IBAction func SignupTapped(_ sender: UIButton) {
         let successValidation = validateTextField()
@@ -104,20 +117,20 @@ class SignupViewController: AbstractViewController {
         }
         
         showLoadingProgress()
-        if let email = tfEmail.text, let password = tfPassword.text{
+        if let email = tfEmail.text, let password = tfPassword.text, let fullname = tfFullname.text {
             DispatchQueue.global(qos: .userInitiated).async {[weak self] in
                 guard self != nil else {return}
-                FirebaseAuthManager.shareInstance.createUser(email: email, password: password){ [weak self] success in
+                UserRepository.sharedInstance.createUser(email: email, username: fullname, password: password, image: nil){ [weak self] err in
                     self?.dismissLoadingProgress()
                     DispatchQueue.main.async {[weak self] in
                         guard let strongSelf = self else {return}
-                        if success{
-                            print("Sign up success")
-                            WhisperNotification.showSucess(successMessage: "Sign up success".localized(), navController: strongSelf.navigationController!)
+                        if let err = err{
+                            print("Sign up err:", err)
+                            WhisperNotification.showError(errMessage: "\("Sign up failed".localized())", navController: strongSelf.navigationController!)
                         }
                         else{
-                            print("Sign up failed")
-                            WhisperNotification.showError(errMessage: "\("Sign up failed".localized())", navController: strongSelf.navigationController!)
+                            print("Sign up success")
+                            WhisperNotification.showSucess(successMessage: "Sign up success".localized(), navController: strongSelf.navigationController!)
                         }
                     }
                 }
@@ -137,17 +150,17 @@ class SignupViewController: AbstractViewController {
             }
         case .FullName:
             guard let fullName = sender.text else {return}
-            if !validation.validateName(name: fullName){
-                tfFullname.showPopTip(isShow: true, text: "Length be 18 characters max and 3 characters minimum")
-            }else{
+            if fullName.isEmpty || validation.validateName(name: fullName){
                 tfFullname.showPopTip(isShow: false)
+            }else{
+                tfFullname.showPopTip(isShow: true, text: "Length be 18 characters max and 3 characters minimum")
             }
         case .Email:
             guard let email = sender.text else {return}
-            if !validation.validateEmailId(emailID: email){
-                tfEmail.showPopTip(isShow: true, text: "Invalid email")
-            }else{
+            if email.isEmpty || validation.validateEmailId(emailID: email){
                 tfEmail.showPopTip(isShow: false)
+            }else{
+                tfEmail.showPopTip(isShow: true, text: "Invalid email")
             }
         case .Password:
             guard let password = sender.text else {return}

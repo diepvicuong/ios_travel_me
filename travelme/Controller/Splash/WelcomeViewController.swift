@@ -37,13 +37,15 @@ class WelcomeViewController: AbstractViewController {
             print("Gmail Signed in")
             gotoHome()
         }else{
-            // User signed out
+            // Check firebase user
             if FirebaseAuthManager.shareInstance.isHasUser(){
                 print("Firebase sign in")
                 gotoHome()
+            }else{
+                print("Signed out")
+                gotoLogin()
             }
-            print("Signed out")
-            gotoLogin()
+            
         }
     }
     

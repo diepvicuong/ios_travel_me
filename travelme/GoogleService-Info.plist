@@ -3,32 +3,32 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>777337854722-sp9dtccjf0r986t776p3t2b3cnknhfpq.apps.googleusercontent.com</string>
+	<string>777337854722-jqav78nrujrsdvnfovg5skek87g64r3t.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.777337854722-sp9dtccjf0r986t776p3t2b3cnknhfpq</string>
+	<string>com.googleusercontent.apps.777337854722-jqav78nrujrsdvnfovg5skek87g64r3t</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAYVrKs8yz-nhPMx9RVhMKVK5lKEvMXjkc</string>
 	<key>GCM_SENDER_ID</key>
 	<string>777337854722</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
-	<key>IS_GCM_ENABLED</key>
-	<true/>
 	<key>BUNDLE_ID</key>
-	<string>com.me.travelme</string>
+	<string>com.ios.travelme</string>
 	<key>PROJECT_ID</key>
 	<string>travelme-c2cba</string>
 	<key>STORAGE_BUCKET</key>
 	<string>travelme-c2cba.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true/>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:777337854722:ios:95eb48f0a9c09d5bc9401b</string>
+	<string>1:777337854722:ios:b0236ccc26e19721c9401b</string>
 </dict>
 </plist>
