@@ -13,14 +13,14 @@ import FirebaseStorage
 class PostRepository{
     static let sharedInstance = PostRepository()
     
-    private let collectionPath = "Posts"
+    private let postRootPath = "Posts"
     private let postImagePath = "post_image"
     private let ref = Database.database().reference()
     
     func createPost(withImage image: UIImage?, caption: String, completion: @escaping (Error?) -> ()) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
 
-        let userPostRef = ref.child(collectionPath).child(uid).childByAutoId()
+        let userPostRef = ref.child(postRootPath).child(uid).childByAutoId()
         
         guard let postId = userPostRef.key else {return}
         
@@ -41,7 +41,7 @@ class PostRepository{
     func fetchPost(withUID uid: String, postId: String, completion: @escaping (Post) -> (), withCancel cancel:((Error)-> ())? ){
         guard let currentLoggedInUser = Auth.auth().currentUser?.uid else { return }
         
-        let ref = Database.database().reference().child("posts").child(uid).child(postId)
+        let ref = Database.database().reference().child(postRootPath).child(uid).child(postId)
         
         ref.observeSingleEvent(of: .value, with: {(snapshot) in
             guard let postDictionary = snapshot.value as? [String: Any] else {
@@ -59,17 +59,21 @@ class PostRepository{
     }
     
     func fetchAllPost(withUID uid: String, completion: @escaping ([Post]) -> (), withCancel cancel: ((Error) -> ())?){
-        let ref = Database.database().reference().child(collectionPath).child(uid)
+        let childRef = ref.child(postRootPath).child(uid)
         
-        ref.observeSingleEvent(of: .value, with: {(snapshot) in
+        debugPrint("Database reference:", ref)
+        childRef.observeSingleEvent(of: .value, with: {(snapshot) in
+            debugPrint("Snapshot:", snapshot)
             guard let dictionaries = snapshot.value as? [String: Any] else{
                 completion([])
                 return
             }
             var posts = [Post]()
             
+            debugPrint("Count:", dictionaries.count)
             dictionaries.forEach({ (postId, value) in
                 self.fetchPost(withUID: uid, postId: postId, completion: {post in
+                    debugPrint("post:", post.caption)
                     posts.append(post)
                     if posts.count == dictionaries.count{
                         completion(posts)
@@ -112,6 +116,18 @@ class PostRepository{
                 }
                 completion(downloadURL.absoluteString)
             }
+        }
+    }
+    
+    func countPosts(withUID uid: String, completion: @escaping (Int) -> ()){
+        let childRef = ref.child(postRootPath).child(uid)
+        
+        childRef.observeSingleEvent(of: .value){ snapShot in
+            guard let dictionaries = snapShot.value as? [String: Any] else{
+                completion(0)
+                return
+            }
+            completion(dictionaries.count)
         }
     }
 }

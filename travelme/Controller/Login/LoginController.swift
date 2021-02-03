@@ -20,6 +20,10 @@ class LoginController: AbstractViewController {
     
     var validation = Validation()
 
+    deinit {
+        debugPrint("********** LoginVC deinit **********")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

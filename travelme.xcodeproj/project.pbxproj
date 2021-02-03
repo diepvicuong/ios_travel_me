@@ -23,10 +23,18 @@
 		4332CBBB25BE635200C730E5 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4332CBBA25BE635200C730E5 /* MainTabBarController.swift */; };
 		4332CBC325BE68D200C730E5 /* AddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4332CBC225BE68D200C730E5 /* AddVC.swift */; };
 		4332CBC925BEA73100C730E5 /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4332CBC825BEA73100C730E5 /* UIViewExt.swift */; };
-		4332CC8725C1579500C730E5 /*  TripRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4332CC8625C1579500C730E5 /*  TripRepository.swift */; };
+		4332CC8725C1579500C730E5 /* PostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4332CC8625C1579500C730E5 /* PostRepository.swift */; };
 		4332CC8C25C159AA00C730E5 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4332CC8B25C159AA00C730E5 /* Post.swift */; };
 		4332CCBC25C1747A00C730E5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4332CCBB25C1747A00C730E5 /* GoogleService-Info.plist */; };
 		4332CCF825C2739F00C730E5 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4332CCF725C2739F00C730E5 /* UserRepository.swift */; };
+		4332CD7725C6AD6100C730E5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4332CD7625C6AD6000C730E5 /* ProfileViewController.swift */; };
+		4332CD7C25C6C0BD00C730E5 /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4332CD7B25C6C0BD00C730E5 /* ProfileHeader.swift */; };
+		4332CD8125C6C24700C730E5 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4332CD8025C6C24700C730E5 /* CustomImageView.swift */; };
+		4332CD8D25C7A95A00C730E5 /* ProfileEmptyStateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4332CD8C25C7A95900C730E5 /* ProfileEmptyStateCell.swift */; };
+		4332CD9825C7E55700C730E5 /* HomePostCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4332CD9725C7E55700C730E5 /* HomePostCellHeader.swift */; };
+		4332CD9D25C7F03900C730E5 /* HomePostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4332CD9C25C7F03900C730E5 /* HomePostCollectionViewCell.swift */; };
+		4332CDAB25C9A86300C730E5 /* NotificationExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4332CDAA25C9A86100C730E5 /* NotificationExt.swift */; };
+		4332CDB025C9A87400C730E5 /* DateTimeExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4332CDAF25C9A87400C730E5 /* DateTimeExt.swift */; };
 		438C532925B3F5300092BE5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438C532825B3F5300092BE5B /* AppDelegate.swift */; };
 		438C532B25B3F5300092BE5B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438C532A25B3F5300092BE5B /* SceneDelegate.swift */; };
 		438C532D25B3F5300092BE5B /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438C532C25B3F5300092BE5B /* LoginController.swift */; };
@@ -71,10 +79,18 @@
 		4332CBBA25BE635200C730E5 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		4332CBC225BE68D200C730E5 /* AddVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVC.swift; sourceTree = "<group>"; };
 		4332CBC825BEA73100C730E5 /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
-		4332CC8625C1579500C730E5 /*  TripRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " TripRepository.swift"; sourceTree = "<group>"; };
+		4332CC8625C1579500C730E5 /* PostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepository.swift; sourceTree = "<group>"; };
 		4332CC8B25C159AA00C730E5 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		4332CCBB25C1747A00C730E5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4332CCF725C2739F00C730E5 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		4332CD7625C6AD6000C730E5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		4332CD7B25C6C0BD00C730E5 /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
+		4332CD8025C6C24700C730E5 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		4332CD8C25C7A95900C730E5 /* ProfileEmptyStateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEmptyStateCell.swift; sourceTree = "<group>"; };
+		4332CD9725C7E55700C730E5 /* HomePostCellHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCellHeader.swift; sourceTree = "<group>"; };
+		4332CD9C25C7F03900C730E5 /* HomePostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCollectionViewCell.swift; sourceTree = "<group>"; };
+		4332CDAA25C9A86100C730E5 /* NotificationExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExt.swift; sourceTree = "<group>"; };
+		4332CDAF25C9A87400C730E5 /* DateTimeExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeExt.swift; sourceTree = "<group>"; };
 		438C532525B3F5300092BE5B /* travelme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = travelme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		438C532825B3F5300092BE5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		438C532A25B3F5300092BE5B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -141,6 +157,8 @@
 		4318B2FE25B58CE8001B8B9E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4332CD9625C7E4DC00C730E5 /* Profile */,
+				4332CD9425C7E4CA00C730E5 /* Home */,
 				4318B2FF25B58CEF001B8B9E /* CustomView */,
 			);
 			path = View;
@@ -151,6 +169,7 @@
 			children = (
 				4318B30025B58D0C001B8B9E /* CustomTextField.swift */,
 				432B972925B96CD000CD4CCC /* CustomMDCOutlineTextField.swift */,
+				4332CD8025C6C24700C730E5 /* CustomImageView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -185,6 +204,7 @@
 		432B988825BD8BDB00CD4CCC /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				4332CD7625C6AD6000C730E5 /* ProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -233,6 +253,8 @@
 			isa = PBXGroup;
 			children = (
 				4332CBC825BEA73100C730E5 /* UIViewExt.swift */,
+				4332CDAA25C9A86100C730E5 /* NotificationExt.swift */,
+				4332CDAF25C9A87400C730E5 /* DateTimeExt.swift */,
 			);
 			path = Ext;
 			sourceTree = "<group>";
@@ -241,10 +263,28 @@
 			isa = PBXGroup;
 			children = (
 				4318B2F025B53F63001B8B9E /* Firebase */,
-				4332CC8625C1579500C730E5 /*  TripRepository.swift */,
+				4332CC8625C1579500C730E5 /* PostRepository.swift */,
 				4332CCF725C2739F00C730E5 /* UserRepository.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		4332CD9425C7E4CA00C730E5 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				4332CD9725C7E55700C730E5 /* HomePostCellHeader.swift */,
+				4332CD9C25C7F03900C730E5 /* HomePostCollectionViewCell.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		4332CD9625C7E4DC00C730E5 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				4332CD7B25C6C0BD00C730E5 /* ProfileHeader.swift */,
+				4332CD8C25C7A95900C730E5 /* ProfileEmptyStateCell.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		438C531C25B3F5300092BE5B = {
@@ -631,24 +671,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				4332CC8C25C159AA00C730E5 /* Post.swift in Sources */,
+				4332CD8125C6C24700C730E5 /* CustomImageView.swift in Sources */,
 				4332CBC925BEA73100C730E5 /* UIViewExt.swift in Sources */,
+				4332CDB025C9A87400C730E5 /* DateTimeExt.swift in Sources */,
 				4318B30125B58D0C001B8B9E /* CustomTextField.swift in Sources */,
 				4318B2F225B53F87001B8B9E /* FirebaseAuthManager.swift in Sources */,
 				43ADF14925B439C000192D11 /* StringUtils.swift in Sources */,
 				438C532D25B3F5300092BE5B /* LoginController.swift in Sources */,
+				4332CD7725C6AD6100C730E5 /* ProfileViewController.swift in Sources */,
+				4332CDAB25C9A86300C730E5 /* NotificationExt.swift in Sources */,
+				4332CD9D25C7F03900C730E5 /* HomePostCollectionViewCell.swift in Sources */,
 				4318B2EC25B5327C001B8B9E /* SignupViewController.swift in Sources */,
+				4332CD7C25C6C0BD00C730E5 /* ProfileHeader.swift in Sources */,
 				432B984025BAB2C400CD4CCC /* HomeViewController.swift in Sources */,
 				4332CBC325BE68D200C730E5 /* AddVC.swift in Sources */,
 				432B987A25BBF8CA00CD4CCC /* User.swift in Sources */,
-				4332CC8725C1579500C730E5 /*  TripRepository.swift in Sources */,
+				4332CC8725C1579500C730E5 /* PostRepository.swift in Sources */,
 				432B984525BAB85500CD4CCC /* WelcomeViewController.swift in Sources */,
 				438C532925B3F5300092BE5B /* AppDelegate.swift in Sources */,
 				4318B39125B5E33C001B8B9E /* Validation.swift in Sources */,
+				4332CD9825C7E55700C730E5 /* HomePostCellHeader.swift in Sources */,
 				4332CBBB25BE635200C730E5 /* MainTabBarController.swift in Sources */,
 				438DC11225B8420F00FF52D9 /* AbstractViewController.swift in Sources */,
 				432B97EE25B9967A00CD4CCC /* WhisperNotification.swift in Sources */,
 				4332CCF825C2739F00C730E5 /* UserRepository.swift in Sources */,
 				432B972A25B96CD000CD4CCC /* CustomMDCOutlineTextField.swift in Sources */,
+				4332CD8D25C7A95A00C730E5 /* ProfileEmptyStateCell.swift in Sources */,
 				432B988B25BD8C0800CD4CCC /* MapViewController.swift in Sources */,
 				438C532B25B3F5300092BE5B /* SceneDelegate.swift in Sources */,
 			);

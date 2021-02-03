@@ -21,12 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Google sign-in
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-//        GIDSignIn.sharedInstance().clientID = "777337854722-jqav78nrujrsdvnfovg5skek87g64r3t.apps.googleusercontent.com"
         
         GIDSignIn.sharedInstance().delegate = self
         
         // If user already sign in, restore sign-in state.
-        GIDSignIn.sharedInstance()?.restorePreviousSignIn()
+//        GIDSignIn.sharedInstance()?.restorePreviousSignIn()
         return true
     }
     

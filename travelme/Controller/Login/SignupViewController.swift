@@ -21,6 +21,10 @@ class SignupViewController: AbstractViewController {
     let hintImageView = UIImageView(image: UIImage(named: "visibility"))
     var validation = Validation()
     
+    deinit {
+        debugPrint("********** SigupVC deinit **********")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

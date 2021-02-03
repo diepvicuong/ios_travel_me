@@ -22,7 +22,7 @@ class WelcomeViewController: AbstractViewController {
     override func viewDidAppear(_ animated: Bool) {
         sleep(2)
         //Register notification after login-in with Gmail
-        NotificationCenter.default.addObserver(self, selector: #selector(userDidLoginGoogle(_:)), name: .signInGoogleCompleted, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(userDidLoginGoogle(_:)), name: .signInGoogleCompleted, object: nil)
     
         //check login with Gmail
         checkLoginGmail()
@@ -49,7 +49,7 @@ class WelcomeViewController: AbstractViewController {
         }
     }
     
-    @objc private func userDidLoginGoogle(_ notification: Notification){
-        checkLoginGmail()
-    }
+//    @objc private func userDidLoginGoogle(_ notification: Notification){
+//        checkLoginGmail()
+//    }
 }

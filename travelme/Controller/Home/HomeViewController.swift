@@ -12,6 +12,10 @@ import SPPermissions
 
 class HomeViewController: AbstractViewController {
 
+    deinit {
+        debugPrint("********** HomeVC deinit **********")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

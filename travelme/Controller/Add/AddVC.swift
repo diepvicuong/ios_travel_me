@@ -18,7 +18,11 @@ class AddVC: AbstractViewController {
     
     let datePickerTo = UIDatePicker()
     let datePickerFrom = UIDatePicker()
-        
+    
+    deinit {
+        debugPrint("********** AddVC deinit **********")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -71,7 +75,7 @@ class AddVC: AbstractViewController {
 
     private func initContent(){
         // Navigation title
-        title = "Add new".localized()
+        navigationItem.title = "Add new".localized()
     
         // Textfield
         tfTripName.placeholder = "Trip name".localized() + "(*)"
@@ -103,7 +107,7 @@ class AddVC: AbstractViewController {
             }
             WhisperNotification.showSucess(successMessage: "OK".localized(), navController: strongSelf.navigationController!)
             strongSelf.navigationController?.dismiss(animated: true, completion: nil)
-            
+            NotificationCenter.default.post(name: Notification.Name.updateProfilePost, object: nil)
         }
         
     }

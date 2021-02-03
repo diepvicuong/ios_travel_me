@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -561,15 +562,46 @@
         <!--Profile-->
         <scene sceneID="AnT-j6-4KH">
             <objects>
-                <viewController id="kaL-ZK-uic" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="kaL-ZK-uic" customClass="ProfileViewController" customModule="travelme" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Nee-wp-Vrv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qAT-fT-ZDf">
+                                <rect key="frame" x="0.0" y="56" width="414" height="611"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Iiv-u6-WRb">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="x3u-Q2-a7N">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="mHf-7W-xNk">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="CwV-bc-KCX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="CwV-bc-KCX" firstAttribute="bottom" secondItem="qAT-fT-ZDf" secondAttribute="bottom" id="AIA-TV-e6Y"/>
+                            <constraint firstItem="CwV-bc-KCX" firstAttribute="trailing" secondItem="qAT-fT-ZDf" secondAttribute="trailing" id="Bc0-Pf-xif"/>
+                            <constraint firstItem="qAT-fT-ZDf" firstAttribute="leading" secondItem="CwV-bc-KCX" secondAttribute="leading" id="kAH-Ca-eoK"/>
+                            <constraint firstItem="qAT-fT-ZDf" firstAttribute="top" secondItem="CwV-bc-KCX" secondAttribute="top" id="qrI-7S-HaE"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="profile-outline" selectedImage="profile-filled" id="s3V-b7-85z"/>
                     <navigationItem key="navigationItem" title="Profile" id="naz-Sk-os0"/>
+                    <connections>
+                        <outlet property="collectionView" destination="qAT-fT-ZDf" id="FlL-UV-d8A"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fac-Ho-MfA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -589,9 +621,9 @@
                     <connections>
                         <segue destination="YYn-sn-Zmw" kind="relationship" relationship="viewControllers" id="6vE-Vb-Cgj"/>
                         <segue destination="kb1-f1-mPa" kind="relationship" relationship="viewControllers" id="SuB-5s-dlH"/>
-                        <segue destination="iP4-7R-BNL" kind="relationship" relationship="viewControllers" id="IvX-dU-E2F"/>
-                        <segue destination="Q7z-sz-ubM" kind="relationship" relationship="viewControllers" id="aEY-DK-PUs"/>
                         <segue destination="BH4-P9-VRM" kind="relationship" relationship="viewControllers" id="O5i-SE-lTe"/>
+                        <segue destination="iP4-7R-BNL" kind="relationship" relationship="viewControllers" id="OeT-xq-Jz9"/>
+                        <segue destination="Q7z-sz-ubM" kind="relationship" relationship="viewControllers" id="xuG-Na-rnQ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Km-Ml-0NU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

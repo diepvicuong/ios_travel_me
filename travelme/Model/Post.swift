@@ -13,18 +13,17 @@ class Post{
     
     let user: User
     let imageUrl: String
-    let title: String
     let caption: String
-    let createDate: Int64
+    let createDate: Date
     
     init(user: User, dictionary: [String: Any]) {
         self.user = user
         self.id = dictionary["id"] as? String ?? ""
         self.imageUrl = dictionary["imageUrl"] as? String ?? ""
         self.caption = dictionary["caption"] as? String ?? ""
-        self.title = dictionary["title"] as? String ?? ""
         
-        self.createDate = dictionary["createDate"] as? Int64 ?? 0
+        let timeStamp = dictionary["createDate"] as? Double ?? 0
+        self.createDate = Date(timeIntervalSince1970: timeStamp)
     }
 }
 
