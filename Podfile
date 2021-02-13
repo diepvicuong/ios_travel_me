@@ -14,7 +14,10 @@ target 'travelme' do
 
   # Google SDK
   pod 'GoogleSignIn'
-  
+  pod 'GoogleMaps'
+  pod 'GooglePlaces'
+  pod 'Google-Maps-iOS-Utils', '~> 3.6.0'
+
   # Material textfield
   pod 'MaterialComponents/TextControls+FilledTextAreas'
   pod 'MaterialComponents/TextControls+FilledTextFields'

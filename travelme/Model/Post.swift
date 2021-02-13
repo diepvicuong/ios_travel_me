@@ -15,6 +15,8 @@ class Post{
     let imageUrl: String
     let caption: String
     let createDate: Date
+    let lat: Double
+    let lon: Double
     
     init(user: User, dictionary: [String: Any]) {
         self.user = user
@@ -24,6 +26,10 @@ class Post{
         
         let timeStamp = dictionary["createDate"] as? Double ?? 0
         self.createDate = Date(timeIntervalSince1970: timeStamp)
+        
+        self.lat = dictionary["lat"] as? Double ?? 0
+        self.lon = dictionary["lon"] as? Double ?? 0
     }
+    
 }
 

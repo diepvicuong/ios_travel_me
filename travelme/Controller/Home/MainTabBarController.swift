@@ -34,8 +34,15 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
                     UserRepository.sharedInstance.fetchUser(withUID: uid) { (user) in
                         profileVC.user = user
                     }
-               }
+                }
+                else if let mapVC = navigationVC.topViewController as? MapViewController{
+                    PostRepository.sharedInstance.fetchFollowingUserPost(completion: {posts in
+                        mapVC.posts = posts
+                    }, withCancel: nil)
+                }
+                
             }
+            
         }
     }
     

@@ -90,7 +90,8 @@ class ProfileViewController: AbstractViewController {
             //TODO: sort by date
             self.posts.sort{ $0.createDate.compare($1.createDate) == .orderedDescending}
             for (index, post) in self.posts.enumerated(){
-                print("post \(index):", post.caption)
+//                debugPrint("post \(index):", post.caption)
+                //TODO: add likes, comments
             }
             
             self.collectionView?.reloadData()

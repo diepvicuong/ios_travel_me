@@ -40,7 +40,7 @@
 	<key>NSLocationUsageDescription</key>
 	<string>Please allow location access</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Please allow location when in use</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Please allow photo access</string>
 	<key>Privacy</key>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sNF-aP-b4n">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sNF-aP-b4n">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -342,11 +342,54 @@
                     <view key="view" contentMode="scaleToFill" id="eMH-nA-GJk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tkT-ol-e6G" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="56" width="414" height="611"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5UO-z0-1Y6">
+                                <rect key="frame" x="10" y="66" width="140" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="5UO-z0-1Y6" secondAttribute="height" multiplier="5:1" id="h5Z-Ri-OXb"/>
+                                    <constraint firstAttribute="width" constant="140" id="xry-Ic-qME"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Standard"/>
+                                    <segment title="Satellite"/>
+                                </segments>
+                                <connections>
+                                    <action selector="changeMapTypeHandle:" destination="2js-SZ-Q9S" eventType="valueChanged" id="jA0-RL-QaR"/>
+                                </connections>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXN-gW-Qkm">
+                                <rect key="frame" x="382" y="66" width="22" height="22"/>
+                                <state key="normal" image="my-location"/>
+                                <state key="selected" image="my-location-selected"/>
+                                <connections>
+                                    <action selector="btnCurrentLocHandle:" destination="2js-SZ-Q9S" eventType="touchUpInside" id="CT0-B7-ac0"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="szB-cv-84l"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
+                        <constraints>
+                            <constraint firstItem="tkT-ol-e6G" firstAttribute="top" secondItem="szB-cv-84l" secondAttribute="top" id="7lT-fZ-8gA"/>
+                            <constraint firstItem="tkT-ol-e6G" firstAttribute="leading" secondItem="szB-cv-84l" secondAttribute="leading" id="KbL-ju-8YN"/>
+                            <constraint firstItem="szB-cv-84l" firstAttribute="trailing" secondItem="tkT-ol-e6G" secondAttribute="trailing" id="T4l-cA-mPn"/>
+                            <constraint firstItem="5UO-z0-1Y6" firstAttribute="top" secondItem="szB-cv-84l" secondAttribute="top" constant="10" id="fWs-qP-4SZ"/>
+                            <constraint firstItem="5UO-z0-1Y6" firstAttribute="leading" secondItem="szB-cv-84l" secondAttribute="leading" constant="10" id="hUk-rL-HhH"/>
+                            <constraint firstItem="bXN-gW-Qkm" firstAttribute="top" secondItem="szB-cv-84l" secondAttribute="top" constant="10" id="n1a-oc-tSL"/>
+                            <constraint firstItem="szB-cv-84l" firstAttribute="trailing" secondItem="bXN-gW-Qkm" secondAttribute="trailing" constant="10" id="q4g-1D-XLx"/>
+                            <constraint firstItem="szB-cv-84l" firstAttribute="bottom" secondItem="tkT-ol-e6G" secondAttribute="bottom" id="wzf-EX-39z"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="map-outline" selectedImage="map-filled" id="X1s-uG-Dxf"/>
                     <navigationItem key="navigationItem" title="Map" id="ieS-Qy-8Ps"/>
+                    <connections>
+                        <outlet property="btnCurrentLoc" destination="bXN-gW-Qkm" id="SzI-qg-CFz"/>
+                        <outlet property="btnMapType" destination="5UO-z0-1Y6" id="66o-or-gJT"/>
+                        <outlet property="myMapView" destination="tkT-ol-e6G" id="v0I-SK-g8L"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hY3-gL-eNt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -374,11 +417,11 @@
             <objects>
                 <viewController storyboardIdentifier="AddVC" id="n1f-LX-IrS" customClass="AddVC" customModule="travelme" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YwV-bi-3nG">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J6S-h5-dac">
-                                <rect key="frame" x="0.0" y="56" width="414" height="611"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="692"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tHc-Ie-dNe" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="292"/>
@@ -621,7 +664,6 @@
                     <connections>
                         <segue destination="YYn-sn-Zmw" kind="relationship" relationship="viewControllers" id="6vE-Vb-Cgj"/>
                         <segue destination="kb1-f1-mPa" kind="relationship" relationship="viewControllers" id="SuB-5s-dlH"/>
-                        <segue destination="BH4-P9-VRM" kind="relationship" relationship="viewControllers" id="O5i-SE-lTe"/>
                         <segue destination="iP4-7R-BNL" kind="relationship" relationship="viewControllers" id="OeT-xq-Jz9"/>
                         <segue destination="Q7z-sz-ubM" kind="relationship" relationship="viewControllers" id="xuG-Na-rnQ"/>
                     </connections>
@@ -708,7 +750,7 @@
                 <navigationController storyboardIdentifier="AddNavigationVC" id="BH4-P9-VRM" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="9Pi-en-cBz"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gxL-Ub-5gT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -765,6 +807,8 @@
         <image name="location" width="24" height="24"/>
         <image name="map-filled" width="24" height="24"/>
         <image name="map-outline" width="24" height="24"/>
+        <image name="my-location" width="24" height="24"/>
+        <image name="my-location-selected" width="22" height="22"/>
         <image name="profile-filled" width="24" height="24"/>
         <image name="profile-outline" width="24" height="24"/>
         <image name="tag" width="24" height="24"/>

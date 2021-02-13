@@ -17,7 +17,7 @@ class PostRepository{
     private let postImagePath = "post_image"
     private let ref = Database.database().reference()
     
-    func createPost(withImage image: UIImage?, caption: String, completion: @escaping (Error?) -> ()) {
+    func createPost(withImage image: UIImage?, caption: String, lat: Double = 0, lon: Double = 0, completion: @escaping (Error?) -> ()) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
 
         let userPostRef = ref.child(postRootPath).child(uid).childByAutoId()
@@ -25,7 +25,13 @@ class PostRepository{
         guard let postId = userPostRef.key else {return}
         
         self.uploadPostImage(image: image){ imageUrl in
-            let values = ["imageUrl": imageUrl, "caption": caption, "createDate": Date().timeIntervalSince1970, "id": postId] as [String: Any]
+            let values =
+                ["imageUrl": imageUrl,
+                 "caption": caption,
+                 "createDate": Date().timeIntervalSince1970,
+                 "id": postId,
+                 "lat": lat,
+                 "lon": lon] as [String: Any]
             
             userPostRef.updateChildValues(values){ (err, ref) in
                 if let err = err {
@@ -70,15 +76,43 @@ class PostRepository{
             }
             var posts = [Post]()
             
-            debugPrint("Count:", dictionaries.count)
+//            debugPrint("Count:", dictionaries.count)
             dictionaries.forEach({ (postId, value) in
                 self.fetchPost(withUID: uid, postId: postId, completion: {post in
-                    debugPrint("post:", post.caption)
+//                    debugPrint("post:", post.caption)
                     posts.append(post)
                     if posts.count == dictionaries.count{
                         completion(posts)
                     }
 
+                }, withCancel: {err in
+                    debugPrint("Failed to fetch all posts:", err)
+                    cancel?(err)
+                })
+            })
+        })
+    }
+    
+    func fetchFollowingUserPost(completion: @escaping ([Post]) -> (), withCancel cancel: ((Error) -> ())?) {
+        let childRef = ref.child(postRootPath)
+        
+        debugPrint("Database reference:", childRef)
+        childRef.observeSingleEvent(of: .value, with: {(snapshot) in
+//            debugPrint("Snapshot:", snapshot)
+            guard let userInDictionary = snapshot.value as? [String: Any] else{
+                completion([])
+                return
+            }
+            var allPost = [Post]()
+            var numOfUser = 0
+            
+            userInDictionary.forEach({ (uid, value) in
+                self.fetchAllPost(withUID: uid, completion: {posts in
+                    allPost.append(contentsOf: posts)
+                    numOfUser += 1
+                    if userInDictionary.count == numOfUser {
+                        completion(allPost)
+                    }
                 }, withCancel: {err in
                     debugPrint("Failed to fetch all posts:", err)
                     cancel?(err)

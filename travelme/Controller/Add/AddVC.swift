@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import GoogleMaps
 
 class AddVC: AbstractViewController {
     @IBOutlet weak var btnPickImg: UIButton!
@@ -18,6 +19,14 @@ class AddVC: AbstractViewController {
     
     let datePickerTo = UIDatePicker()
     let datePickerFrom = UIDatePicker()
+    
+    var location = CLLocationCoordinate2D(){
+        didSet{
+            LocationUtils.getAddressFromLocation(lat: location.latitude, lon: location.longitude){[weak self] addressStr in
+                self?.tfLocation.text = addressStr
+            }
+        }
+    }
     
     deinit {
         debugPrint("********** AddVC deinit **********")
@@ -52,6 +61,8 @@ class AddVC: AbstractViewController {
         imgCoverPhoto.isUserInteractionEnabled = true
         
         // TextField
+        tfLocation.isUserInteractionEnabled = false
+
         datePickerFrom.datePickerMode = .date
         tfDateStart.inputView = datePickerFrom
         tfDateStart.keyboardToolbar.doneBarButton.setTarget(self, action: #selector(doneBtnTfTapped(_:)))
@@ -97,7 +108,7 @@ class AddVC: AbstractViewController {
         }
         
         showLoadingProgress()
-        PostRepository.sharedInstance.createPost(withImage: imgCoverPhoto?.image, caption: name){[weak self] err in
+        PostRepository.sharedInstance.createPost(withImage: imgCoverPhoto?.image, caption: name, lat: location.latitude, lon: location.longitude){[weak self] err in
             guard let strongSelf = self else {return}
 
             strongSelf.dismissLoadingProgress()
