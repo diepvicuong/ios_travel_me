@@ -236,11 +236,6 @@ extension MapViewController{
 
         currentSelectedPostItem = nil
         for post in self.posts {
-            //TODO: edit here
-//            if post.lat == 0 && post.lon == 0{
-//                continue
-//            }
-            
             let postOnMap = PostOnMap(post: post)
             let postLocation = CLLocationCoordinate2D(latitude: postOnMap.lat, longitude: postOnMap.lon)
             
@@ -297,9 +292,10 @@ extension MapViewController: GMSMapViewDelegate, GMUClusterRendererDelegate, GMU
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-//        debugPrint("mapView didTap marker: \(marker.userData)")
+        debugPrint("mapView didTap marker: \(marker.userData)")
         if let postClusterItem = marker.userData as? PostClusterItem{
             onMarkerSelected(postClusterItem: postClusterItem)
+            only1Marker.map = nil
         }
         return false
     }
@@ -307,8 +303,8 @@ extension MapViewController: GMSMapViewDelegate, GMUClusterRendererDelegate, GMU
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
 //        debugPrint("mapView didTapAt coordinate: \(coordinate)")
         bottomSheetVC.showLocationData(location: coordinate)
-        only1Marker.position = coordinate
         only1Marker.map = self.myMapView
+        only1Marker.position = coordinate
     }
     
     func renderer(_ renderer: GMUClusterRenderer, willRenderMarker marker: GMSMarker) {
