@@ -54,6 +54,7 @@
 		438DC11225B8420F00FF52D9 /* AbstractViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438DC11125B8420E00FF52D9 /* AbstractViewController.swift */; };
 		43ADF13925B437B100192D11 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 43ADF13B25B437B100192D11 /* Localizable.strings */; };
 		43ADF14925B439C000192D11 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ADF14825B439C000192D11 /* StringUtils.swift */; };
+		43FDB09A25D97B2D00CDEC30 /* AbstractCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDB09925D97B2D00CDEC30 /* AbstractCollectionVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +127,7 @@
 		43ADF13A25B437B100192D11 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		43ADF13F25B437B500192D11 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		43ADF14825B439C000192D11 /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
+		43FDB09925D97B2D00CDEC30 /* AbstractCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractCollectionVC.swift; sourceTree = "<group>"; };
 		47FEB47C6DE421AEB8F06CC7 /* Pods-travelme-travelmeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travelme-travelmeUITests.release.xcconfig"; path = "Target Support Files/Pods-travelme-travelmeUITests/Pods-travelme-travelmeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		68BB503CD2FBA934E3659FBD /* Pods-travelmeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travelmeTests.debug.xcconfig"; path = "Target Support Files/Pods-travelmeTests/Pods-travelmeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7065BAB5EF1DE9FA3117A52A /* Pods-travelme.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travelme.debug.xcconfig"; path = "Target Support Files/Pods-travelme/Pods-travelme.debug.xcconfig"; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 				432B988825BD8BDB00CD4CCC /* Profile */,
 				432B988125BD8BBD00CD4CCC /* Login */,
 				438DC11125B8420E00FF52D9 /* AbstractViewController.swift */,
+				43FDB09925D97B2D00CDEC30 /* AbstractCollectionVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -724,6 +727,7 @@
 				4318B2EC25B5327C001B8B9E /* SignupViewController.swift in Sources */,
 				4332CD7C25C6C0BD00C730E5 /* ProfileHeader.swift in Sources */,
 				4332CDE725CAA5A500C730E5 /* BottomSheetViewController.swift in Sources */,
+				43FDB09A25D97B2D00CDEC30 /* AbstractCollectionVC.swift in Sources */,
 				432B984025BAB2C400CD4CCC /* HomeViewController.swift in Sources */,
 				4332CBC325BE68D200C730E5 /* AddVC.swift in Sources */,
 				432B987A25BBF8CA00CD4CCC /* User.swift in Sources */,

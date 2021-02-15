@@ -17,8 +17,17 @@ class AddVC: AbstractViewController {
     @IBOutlet weak var tfDateStart: CustomTextField!
     @IBOutlet weak var tfDateEnd: CustomTextField!
     
-    let datePickerTo = UIDatePicker()
-    let datePickerFrom = UIDatePicker()
+    let datePickerTo: UIDatePicker = {
+        let dp = UIDatePicker()
+        dp.datePickerMode = .date
+        return dp
+    }()
+    
+    let datePickerFrom: UIDatePicker = {
+        let dp = UIDatePicker()
+        dp.datePickerMode = .date
+        return dp
+    }()
     
     var location = CLLocationCoordinate2D(){
         didSet{
@@ -63,11 +72,9 @@ class AddVC: AbstractViewController {
         // TextField
         tfLocation.isUserInteractionEnabled = false
 
-        datePickerFrom.datePickerMode = .date
         tfDateStart.inputView = datePickerFrom
         tfDateStart.keyboardToolbar.doneBarButton.setTarget(self, action: #selector(doneBtnTfTapped(_:)))
         
-        datePickerTo.datePickerMode = .date
         tfDateEnd.inputView = datePickerTo
         tfDateEnd.keyboardToolbar.doneBarButton.setTarget(self, action: #selector(doneBtnTfTapped(_:)))
         
@@ -101,14 +108,36 @@ class AddVC: AbstractViewController {
     
     @objc func doneTapped(){
         guard let name = tfTripName.text else {return}
+        guard let startStr = tfDateStart.text else {return}
+        guard let endStr = tfDateEnd.text else {return}
+
         if name.isEmpty {
-            print("All data is nil")
+            print("Trip name is nil")
             tfTripName.showPopTip(isShow: true, text: "Trip name must not empty".localized())
+            return
+        }
+        if startStr.isEmpty{
+            print("Start date is nil")
+            tfDateStart.showPopTip(isShow: true, text: "Start Date must not empty".localized())
+            return
+        }
+        if endStr.isEmpty{
+            print("End date is nil")
+            tfDateEnd.showPopTip(isShow: true, text: "End Date must not empty".localized())
             return
         }
         
         showLoadingProgress()
-        PostRepository.sharedInstance.createPost(withImage: imgCoverPhoto?.image, caption: name, lat: location.latitude, lon: location.longitude){[weak self] err in
+    
+        var diffDate = Calendar.current.dateComponents([.day], from: datePickerFrom.date, to: datePickerTo.date)
+        if startStr == endStr{
+            diffDate.day = 1
+        }else{
+            diffDate.day! += 1
+        }
+        debugPrint("diffDate:", diffDate)
+
+        PostRepository.sharedInstance.createPost(withImage: imgCoverPhoto?.image, caption: name, lat: location.latitude, lon: location.longitude, startDate: datePickerFrom.date, countDate: diffDate.day ?? 0){[weak self] err in
             guard let strongSelf = self else {return}
 
             strongSelf.dismissLoadingProgress()
@@ -143,11 +172,11 @@ class AddVC: AbstractViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd-MM-yyyy"
         if sender == tfDateStart{
-            print("tf Date Start Done")
+            print("datePickerFrom:", datePickerFrom.date)
             tfDateStart.text = formatter.string(from: datePickerFrom.date)
             datePickerTo.minimumDate = datePickerFrom.date
         }else if sender == tfDateEnd{
-            print("tf Date End Done")
+            print("datePickerTo:", datePickerTo.date)
             tfDateEnd.text = formatter.string(from: datePickerTo.date)
             datePickerFrom.maximumDate = datePickerTo.date
         }
@@ -156,6 +185,12 @@ class AddVC: AbstractViewController {
     @IBAction func textFieldEditingChanged(_ sender: UITextField) {
         if sender == tfTripName{
             tfTripName.showPopTip(isShow: false)
+        }
+        if sender == tfDateStart{
+            tfDateStart.showPopTip(isShow: false)
+        }
+        if sender == tfDateEnd{
+            tfDateEnd.showPopTip(isShow: false)
         }
     }
     

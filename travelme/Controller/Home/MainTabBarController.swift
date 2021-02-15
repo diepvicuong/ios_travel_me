@@ -36,7 +36,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
                     }
                 }
                 else if let mapVC = navigationVC.topViewController as? MapViewController{
-                    PostRepository.sharedInstance.fetchFollowingUserPost(completion: {posts in
+                    PostRepository.sharedInstance.fetchFollowingUserPost(withUID: uid, completion: {posts in
                         mapVC.posts = posts
                     }, withCancel: nil)
                 }

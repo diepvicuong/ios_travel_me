@@ -8,6 +8,10 @@
 import Foundation
 
 extension Date{
+    var day: String {return Formatter.day.string(from: self)}
+    var monthName: String {return Formatter.monthName.string(from: self)}
+    var year: String {return Formatter.year.string(from: self)}
+    
     func timeAgo() -> String{
         let secondsAgo = Int(Date().timeIntervalSince(self))
         
@@ -97,4 +101,27 @@ extension Date{
             return "\(secondsAgo/year)y"
         }
     }
+
+}
+
+// <cuongdv25><20210215>: add more formatter
+extension Formatter{
+    static let day: DateFormatter = {
+        let formater = DateFormatter()
+        formater.dateFormat = "dd"
+        return formater
+    }()
+    static let monthName: DateFormatter = {
+        let formater = DateFormatter()
+        formater.dateFormat = "MMM"
+        return formater
+    }()
+    
+    static let year: DateFormatter = {
+        let formater = DateFormatter()
+        formater.dateFormat = "YYYY"
+        return formater
+    }()
+    
+    
 }

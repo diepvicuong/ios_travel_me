@@ -50,6 +50,7 @@ class HomePostCellHeader: UIView {
     
     private let timeAgoLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .black
         label.font = UIFont.italicSystemFont(ofSize: 10)
         return label
     }()

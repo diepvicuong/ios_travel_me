@@ -8,10 +8,10 @@
 import UIKit
 import FirebaseAuth
 
-class ProfileViewController: AbstractViewController {
+class ProfileViewController: AbstractCollectionVC {
     @IBOutlet weak var collectionView: UICollectionView?
     
-    var posts = [Post]()
+//    var posts = [Post]()
 
     private var header: ProfileHeader?
 
@@ -172,22 +172,20 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout{
     }
 }
 
-extension ProfileViewController: HomePostCellDelegate{
-    func didTapComment(post: Post) {
-        debugPrint("didTapComment")
-    }
-    
-    func didTapUser(user: User) {
-        debugPrint("didTapUser")
-    }
-    
-    func didTapOptions(post: Post) {
-        debugPrint("didTapOptions")
-    }
-    
-    func didLike(for cell: HomePostCollectionViewCell) {
-        debugPrint("didLike")
-    }
-    
-    
-}
+//extension ProfileViewController: HomePostCellDelegate{
+//    func didTapComment(post: Post) {
+//        debugPrint("didTapComment")
+//    }
+//
+//    func didTapUser(user: User) {
+//        debugPrint("didTapUser")
+//    }
+//
+//    func didTapOptions(post: Post) {
+//        debugPrint("didTapOptions")
+//    }
+//
+//    func didLike(for cell: HomePostCollectionViewCell) {
+//        debugPrint("didLike")
+//    }
+//}

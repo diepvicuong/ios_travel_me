@@ -9,6 +9,7 @@ import UIKit
 import GoogleMaps
 import GoogleMapsUtils
 import SPPermissions
+import FirebaseAuth
 
 class MapViewController: AbstractViewController {
     @IBOutlet weak var myMapView: GMSMapView!
@@ -128,17 +129,28 @@ class MapViewController: AbstractViewController {
     }
     
     @objc func handleRefreshPost(){
+        guard let currentUserId = Auth.auth().currentUser?.uid else {return}
         self.posts.removeAll()
         
-        PostRepository.sharedInstance.fetchFollowingUserPost(completion: {[weak self]
+        PostRepository.sharedInstance.fetchFollowingUserPost(withUID: currentUserId, completion: {[weak self]
             posts in
             guard let strongSelf = self else {return}
-            strongSelf.posts = posts
+            strongSelf.posts.append(contentsOf: posts)
             strongSelf.drawMapPost()
         }, withCancel: {err in
             debugPrint("Failed to handleRefreshPost:", err)
             }
         )
+        
+        PostRepository.sharedInstance.fetchAllPost(withUID: currentUserId) {[weak self] (posts) in
+            guard let strongSelf = self else {return}
+            strongSelf.posts.append(contentsOf: posts)
+            strongSelf.drawMapPost()
+        } withCancel: { (err) in
+            debugPrint("Failed to handleRefreshPost:", err)
+
+        }
+
     }
     
     @IBAction func changeMapTypeHandle(_ sender: UISegmentedControl) {

@@ -40,6 +40,7 @@ class ProfileHeader: UICollectionViewCell {
     
     private var usernameLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 14)
         return label
     }()
@@ -164,12 +165,12 @@ class ProfileHeader: UICollectionViewCell {
 
 class UserProfileStatsLabel: UILabel {
     private var title: String = ""
-    private var value: Int = 0
+    private var value: String = "0"
     
     init(title: String, value: Int) {
         super.init(frame: .zero)
         self.title = title
-        self.value = value
+        self.value = "\(value)"
         sharedInit()
     }
     
@@ -190,12 +191,22 @@ class UserProfileStatsLabel: UILabel {
     }
     
     func setValue(_ value: Int) {
+        self.value = "\(value)"
+        setAttributedText()
+    }
+    
+    func setValue(_ value: String){
         self.value = value
         setAttributedText()
     }
     
+    func setTitle(_ title: String){
+        self.title = title
+        setAttributedText()
+    }
+    
     private func setAttributedText() {
-        let attributedText = NSMutableAttributedString(string: "\(value)\n", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
+        let attributedText = NSMutableAttributedString(string: "\(value)\n", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
         attributedText.append(NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]))
         self.attributedText = attributedText
     }

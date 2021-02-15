@@ -14,10 +14,11 @@ class PostRepository{
     static let sharedInstance = PostRepository()
     
     private let postRootPath = "Posts"
+    private let collectionPathFollowing = "Following"
     private let postImagePath = "post_image"
     private let ref = Database.database().reference()
     
-    func createPost(withImage image: UIImage?, caption: String, lat: Double = 0, lon: Double = 0, completion: @escaping (Error?) -> ()) {
+    func createPost(withImage image: UIImage?, caption: String, lat: Double, lon: Double, startDate: Date, countDate: Int, completion: @escaping (Error?) -> ()) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
 
         let userPostRef = ref.child(postRootPath).child(uid).childByAutoId()
@@ -31,7 +32,9 @@ class PostRepository{
                  "createDate": Date().timeIntervalSince1970,
                  "id": postId,
                  "lat": lat,
-                 "lon": lon] as [String: Any]
+                 "lon": lon,
+                 "startDate": startDate.timeIntervalSince1970,
+                 "countDate": countDate] as [String: Any]
             
             userPostRef.updateChildValues(values){ (err, ref) in
                 if let err = err {
@@ -93,11 +96,9 @@ class PostRepository{
         })
     }
     
-    func fetchFollowingUserPost(completion: @escaping ([Post]) -> (), withCancel cancel: ((Error) -> ())?) {
-        let childRef = ref.child(postRootPath)
+    func fetchFollowingUserPost(withUID uid: String, completion: @escaping ([Post]) -> (), withCancel cancel: ((Error) -> ())?) {
         
-        debugPrint("Database reference:", childRef)
-        childRef.observeSingleEvent(of: .value, with: {(snapshot) in
+        ref.child(collectionPathFollowing).child(uid).observeSingleEvent(of: .value, with: {(snapshot) in
 //            debugPrint("Snapshot:", snapshot)
             guard let userInDictionary = snapshot.value as? [String: Any] else{
                 completion([])

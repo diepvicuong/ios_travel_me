@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -326,10 +327,41 @@
                     <view key="view" contentMode="scaleToFill" id="IuK-Re-xkm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8rN-oa-sFD">
+                                <rect key="frame" x="0.0" y="56" width="414" height="611"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ome-Bj-hZt">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="7Wg-65-n6t">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bdX-kp-ev2">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="qnv-0U-lye"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
+                        <constraints>
+                            <constraint firstItem="8rN-oa-sFD" firstAttribute="leading" secondItem="qnv-0U-lye" secondAttribute="leading" id="4Xe-30-biA"/>
+                            <constraint firstItem="qnv-0U-lye" firstAttribute="trailing" secondItem="8rN-oa-sFD" secondAttribute="trailing" id="7f4-Cv-3mB"/>
+                            <constraint firstItem="qnv-0U-lye" firstAttribute="bottom" secondItem="8rN-oa-sFD" secondAttribute="bottom" id="C3Z-ZX-wGv"/>
+                            <constraint firstItem="8rN-oa-sFD" firstAttribute="top" secondItem="qnv-0U-lye" secondAttribute="top" id="I9T-4R-8q8"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="sYA-Eg-HCp"/>
+                    <connections>
+                        <outlet property="collectionView" destination="8rN-oa-sFD" id="IAR-pM-Fzj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iev-mU-kCv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -424,7 +456,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="692"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tHc-Ie-dNe" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="292"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="293"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="pLm-ah-8aj">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="182"/>
@@ -433,17 +465,17 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" translatesAutoresizingMaskIntoConstraints="NO" id="Nea-Jf-jrg">
-                                                                <rect key="frame" x="10" y="5" width="80" height="90"/>
+                                                                <rect key="frame" x="10" y="5" width="90" height="90"/>
+                                                                <color key="tintColor" name="AccentColor"/>
                                                                 <accessibility key="accessibilityConfiguration">
                                                                     <accessibilityTraits key="traits" button="YES" image="YES"/>
                                                                 </accessibility>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="90" id="1N7-Dj-2fV"/>
-                                                                    <constraint firstAttribute="width" constant="80" id="1zX-ZT-mQG"/>
+                                                                    <constraint firstAttribute="width" secondItem="Nea-Jf-jrg" secondAttribute="height" multiplier="1:1" id="H4R-wx-PiX"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZTd-AL-JIv">
-                                                                <rect key="frame" x="113" y="35" width="127" height="30"/>
+                                                                <rect key="frame" x="123" y="35" width="127" height="30"/>
                                                                 <state key="normal" title="Pick a cover photo"/>
                                                             </button>
                                                         </subviews>
@@ -463,6 +495,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="6F1-tS-fVI"/>
                                                         </constraints>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                         <userDefinedRuntimeAttributes>
@@ -478,6 +511,7 @@
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="grA-ZL-czd" customClass="CustomTextField" customModule="travelme" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="142" width="414" height="40"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <userDefinedRuntimeAttributes>
@@ -498,14 +532,15 @@
                                                     <constraint firstItem="grA-ZL-czd" firstAttribute="height" secondItem="HDG-DE-YIH" secondAttribute="height" id="xiD-C6-gdM"/>
                                                 </constraints>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="uSi-Uf-r9J">
-                                                <rect key="frame" x="0.0" y="212" width="414" height="80"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="uSi-Uf-r9J">
+                                                <rect key="frame" x="0.0" y="212" width="414" height="81"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g43-2Z-Pld" customClass="CustomTextField" customModule="travelme" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="vgr-vd-HjI"/>
                                                         </constraints>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                         <userDefinedRuntimeAttributes>
@@ -516,7 +551,8 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="35E-iY-iOO" customClass="CustomTextField" customModule="travelme" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="40" width="414" height="40"/>
+                                                        <rect key="frame" x="0.0" y="41" width="414" height="40"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <userDefinedRuntimeAttributes>
@@ -764,34 +800,34 @@
     </scenes>
     <designables>
         <designable name="35E-iY-iOO">
-            <size key="intrinsicContentSize" width="32" height="34"/>
+            <size key="intrinsicContentSize" width="66" height="34"/>
         </designable>
         <designable name="HDG-DE-YIH">
-            <size key="intrinsicContentSize" width="32" height="34"/>
+            <size key="intrinsicContentSize" width="66" height="34"/>
         </designable>
         <designable name="Kd6-af-nff">
             <size key="intrinsicContentSize" width="32" height="34"/>
         </designable>
         <designable name="Kp5-CY-yoh">
-            <size key="intrinsicContentSize" width="12" height="26.666666666666668"/>
+            <size key="intrinsicContentSize" width="394" height="37"/>
         </designable>
         <designable name="Vhk-8N-eUA">
             <size key="intrinsicContentSize" width="32" height="34"/>
         </designable>
         <designable name="agD-77-Bma">
-            <size key="intrinsicContentSize" width="12" height="26.666666666666668"/>
+            <size key="intrinsicContentSize" width="394" height="37"/>
         </designable>
         <designable name="dTT-kM-PfI">
-            <size key="intrinsicContentSize" width="12" height="26.666666666666668"/>
+            <size key="intrinsicContentSize" width="394" height="37"/>
         </designable>
         <designable name="g43-2Z-Pld">
-            <size key="intrinsicContentSize" width="32" height="34"/>
+            <size key="intrinsicContentSize" width="66" height="34"/>
         </designable>
         <designable name="grA-ZL-czd">
-            <size key="intrinsicContentSize" width="32" height="34"/>
+            <size key="intrinsicContentSize" width="66" height="34"/>
         </designable>
         <designable name="w4E-XL-GBC">
-            <size key="intrinsicContentSize" width="12" height="26.666666666666668"/>
+            <size key="intrinsicContentSize" width="394" height="37"/>
         </designable>
     </designables>
     <resources>
@@ -812,6 +848,9 @@
         <image name="profile-filled" width="24" height="24"/>
         <image name="profile-outline" width="24" height="24"/>
         <image name="tag" width="24" height="24"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

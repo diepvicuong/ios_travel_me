@@ -17,6 +17,8 @@ class Post{
     let createDate: Date
     let lat: Double
     let lon: Double
+    let startDate: Date
+    let countDate: Int
     
     init(user: User, dictionary: [String: Any]) {
         self.user = user
@@ -29,7 +31,10 @@ class Post{
         
         self.lat = dictionary["lat"] as? Double ?? 0
         self.lon = dictionary["lon"] as? Double ?? 0
+        
+        let startDateTimeStamp = dictionary["startDate"] as? Double ?? 0
+        self.startDate = Date(timeIntervalSince1970: startDateTimeStamp)
+        self.countDate = dictionary["countDate"] as? Int ?? 0
     }
-    
 }
 

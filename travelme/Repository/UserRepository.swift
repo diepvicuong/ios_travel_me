@@ -13,12 +13,17 @@ import FirebaseDatabase
 
 class UserRepository {
     static let sharedInstance = UserRepository()
-    private let collectionPath = "User"
+    private let collectionPathUser = "User"
+    private let collectionPathFollowing = "Following"
+    private let collectionPathFollower = "Follower"
+    private let collectionPathLike = "Like"
+    private let collectionPathPost = "Posts"
+
     private let profileImagePath = "profile_image"
     private let ref = Database.database().reference()
     
     func fetchUser(withUID uid: String, completion: @escaping (User) -> ()){
-        ref.child(collectionPath).child(uid).observeSingleEvent(of: .value, with: {(snapshot) in
+        ref.child(collectionPathUser).child(uid).observeSingleEvent(of: .value, with: {(snapshot) in
             guard let userDictionary = snapshot.value as? [String: Any] else {return}
             let user = User(uid: uid, dictionary: userDictionary)
             completion(user)
@@ -56,7 +61,7 @@ class UserRepository {
         }
         let values = [uid: dictionaryValues]
         
-        Database.database().reference().child(collectionPath).updateChildValues(values){ (err, ref) in
+        ref.child(collectionPathUser).updateChildValues(values){ (err, ref) in
             if let err = err {
                 print("Failed to upload user to database:", err)
                 return
@@ -88,6 +93,37 @@ class UserRepository {
                     return
                 }
                 completion(downloadURL.absoluteString)
+            }
+        }
+    }
+    
+    func numberOfFollowing(withUID uid: String, completion: @escaping (Int) -> ()){
+        ref.child(collectionPathFollowing).child(uid).observeSingleEvent(of: .value){ snapshot in
+            if let dictionaries = snapshot.value as? [String: Any]{
+                completion(dictionaries.count)
+            }else{
+                completion(0)
+            }
+            
+        }
+    }
+    
+    func numberOfFollowers(withUID uid: String, completion: @escaping (Int) -> ()) {
+        ref.child(collectionPathFollower).child(uid).observeSingleEvent(of: .value) { (snapshot) in
+            if let dictionaries = snapshot.value as? [String: Any] {
+                completion(dictionaries.count)
+            } else {
+                completion(0)
+            }
+        }
+    }
+    
+    func numberOfUserPosts(withUID uid: String, completion: @escaping (Int) -> ()) {
+        ref.child(collectionPathPost).child(uid).observeSingleEvent(of: .value) { (snapshot) in
+            if let dictionaries = snapshot.value as? [String: Any] {
+                completion(dictionaries.count)
+            } else {
+                completion(0)
             }
         }
     }
