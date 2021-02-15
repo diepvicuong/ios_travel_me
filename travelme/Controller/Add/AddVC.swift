@@ -98,8 +98,8 @@ class AddVC: AbstractViewController {
         // Textfield
         tfTripName.placeholder = "Trip name".localized() + "(*)"
         tfLocation.placeholder = "Location".localized()
-        tfDateStart.placeholder = "Start Date".localized()
-        tfDateEnd.placeholder = "End Date".localized()
+        tfDateStart.placeholder = "Start Date".localized() + "(*)"
+        tfDateEnd.placeholder = "End Date".localized() + "(*)"
     }
     
     @objc func dimissTapped(){
@@ -174,10 +174,12 @@ class AddVC: AbstractViewController {
         if sender == tfDateStart{
             print("datePickerFrom:", datePickerFrom.date)
             tfDateStart.text = formatter.string(from: datePickerFrom.date)
+            tfDateStart.showPopTip(isShow: false)
             datePickerTo.minimumDate = datePickerFrom.date
         }else if sender == tfDateEnd{
             print("datePickerTo:", datePickerTo.date)
             tfDateEnd.text = formatter.string(from: datePickerTo.date)
+            tfDateEnd.showPopTip(isShow: false)
             datePickerFrom.maximumDate = datePickerTo.date
         }
     }
@@ -185,12 +187,6 @@ class AddVC: AbstractViewController {
     @IBAction func textFieldEditingChanged(_ sender: UITextField) {
         if sender == tfTripName{
             tfTripName.showPopTip(isShow: false)
-        }
-        if sender == tfDateStart{
-            tfDateStart.showPopTip(isShow: false)
-        }
-        if sender == tfDateEnd{
-            tfDateEnd.showPopTip(isShow: false)
         }
     }
     
@@ -212,7 +208,6 @@ class AddVC: AbstractViewController {
     }
     
 }
-
 
 extension AddVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
