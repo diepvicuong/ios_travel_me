@@ -43,11 +43,13 @@ class AbstractViewController: UIViewController {
 
         self.view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
     }
     
     func dismissLoadingProgress(){
         activityIndicator.stopAnimating()
         activityIndicator.removeFromSuperview()
+        self.view.isUserInteractionEnabled = true
     }
     
     func changeRootPage(vc: UIViewController) {
@@ -63,7 +65,7 @@ class AbstractViewController: UIViewController {
 
 }
 
-// Change root view
+//MARK: - Change root view
 extension AbstractViewController{
     func gotoHome(){
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -75,5 +77,24 @@ extension AbstractViewController{
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = mainStoryboard.instantiateViewController(withIdentifier: "LoginNavigationController") as! UINavigationController
         changeRootPage(vc: vc)
+    }
+}
+
+//MARK: - Choose image
+extension AbstractViewController{
+    func openCamera(childVC: UIImagePickerControllerDelegate & UINavigationControllerDelegate){
+        let imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = true
+        imagePicker.sourceType = .camera
+        imagePicker.delegate = childVC
+        present(imagePicker, animated: true)
+    }
+    
+    func openGallery(childVC: UIImagePickerControllerDelegate & UINavigationControllerDelegate){
+        let imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = true
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.delegate = childVC
+        present(imagePicker, animated: true)
     }
 }

@@ -9,4 +9,5 @@ import Foundation
 
 extension NSNotification.Name{
     static var updateProfilePost = NSNotification.Name(rawValue: "UpdateProfilePost")
+    static var updateProfileInfo = NSNotification.Name(rawValue: "UpdateProfileInfo")
 }

@@ -11,7 +11,7 @@ class ProfileEmptyStateCell: UICollectionViewCell {
     
     private let emptyLable: UILabel = {
        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: StaticData.ProfileHeader.labelFontSize)
         label.text = "Empty".localized()
         label.textColor = .lightGray
         label.textAlignment = .center

@@ -55,6 +55,10 @@
 		43ADF13925B437B100192D11 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 43ADF13B25B437B100192D11 /* Localizable.strings */; };
 		43ADF14925B439C000192D11 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ADF14825B439C000192D11 /* StringUtils.swift */; };
 		43FDB09A25D97B2D00CDEC30 /* AbstractCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDB09925D97B2D00CDEC30 /* AbstractCollectionVC.swift */; };
+		43FDB0A325DA6D2700CDEC30 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDB0A225DA6D2700CDEC30 /* EditProfileVC.swift */; };
+		43FDB0A825DA7B5700CDEC30 /* EditImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDB0A725DA7B5700CDEC30 /* EditImageCell.swift */; };
+		43FDB0AD25DA7B6600CDEC30 /* EditInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDB0AC25DA7B6600CDEC30 /* EditInfoCell.swift */; };
+		43FDB0B225DFA22700CDEC30 /* StaticData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDB0B125DFA22600CDEC30 /* StaticData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +132,10 @@
 		43ADF13F25B437B500192D11 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		43ADF14825B439C000192D11 /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 		43FDB09925D97B2D00CDEC30 /* AbstractCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractCollectionVC.swift; sourceTree = "<group>"; };
+		43FDB0A225DA6D2700CDEC30 /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
+		43FDB0A725DA7B5700CDEC30 /* EditImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditImageCell.swift; sourceTree = "<group>"; };
+		43FDB0AC25DA7B6600CDEC30 /* EditInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInfoCell.swift; sourceTree = "<group>"; };
+		43FDB0B125DFA22600CDEC30 /* StaticData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticData.swift; sourceTree = "<group>"; };
 		47FEB47C6DE421AEB8F06CC7 /* Pods-travelme-travelmeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travelme-travelmeUITests.release.xcconfig"; path = "Target Support Files/Pods-travelme-travelmeUITests/Pods-travelme-travelmeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		68BB503CD2FBA934E3659FBD /* Pods-travelmeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travelmeTests.debug.xcconfig"; path = "Target Support Files/Pods-travelmeTests/Pods-travelmeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7065BAB5EF1DE9FA3117A52A /* Pods-travelme.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travelme.debug.xcconfig"; path = "Target Support Files/Pods-travelme/Pods-travelme.debug.xcconfig"; sourceTree = "<group>"; };
@@ -228,6 +236,7 @@
 		432B988825BD8BDB00CD4CCC /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				43FDB09E25DA6C6500CDEC30 /* Edit */,
 				4332CD7625C6AD6000C730E5 /* ProfileViewController.swift */,
 			);
 			path = Profile;
@@ -405,8 +414,19 @@
 				43ADF14825B439C000192D11 /* StringUtils.swift */,
 				4318B39025B5E33C001B8B9E /* Validation.swift */,
 				435444A125D2417B00144BAE /* LocationUtils.swift */,
+				43FDB0B125DFA22600CDEC30 /* StaticData.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		43FDB09E25DA6C6500CDEC30 /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				43FDB0A225DA6D2700CDEC30 /* EditProfileVC.swift */,
+				43FDB0A725DA7B5700CDEC30 /* EditImageCell.swift */,
+				43FDB0AC25DA7B6600CDEC30 /* EditInfoCell.swift */,
+			);
+			path = Edit;
 			sourceTree = "<group>";
 		};
 		7A15F15E5B40042FF2422337 /* Frameworks */ = {
@@ -734,7 +754,9 @@
 				438B328025D396AC00891B84 /* NumberExt.swift in Sources */,
 				4332CC8725C1579500C730E5 /* PostRepository.swift in Sources */,
 				432B984525BAB85500CD4CCC /* WelcomeViewController.swift in Sources */,
+				43FDB0A325DA6D2700CDEC30 /* EditProfileVC.swift in Sources */,
 				438C532925B3F5300092BE5B /* AppDelegate.swift in Sources */,
+				43FDB0AD25DA7B6600CDEC30 /* EditInfoCell.swift in Sources */,
 				4318B39125B5E33C001B8B9E /* Validation.swift in Sources */,
 				4332CD9825C7E55700C730E5 /* HomePostCellHeader.swift in Sources */,
 				4332CBBB25BE635200C730E5 /* MainTabBarController.swift in Sources */,
@@ -742,11 +764,13 @@
 				432B97EE25B9967A00CD4CCC /* WhisperNotification.swift in Sources */,
 				4332CCF825C2739F00C730E5 /* UserRepository.swift in Sources */,
 				432B972A25B96CD000CD4CCC /* CustomMDCOutlineTextField.swift in Sources */,
+				43FDB0B225DFA22700CDEC30 /* StaticData.swift in Sources */,
 				4332CE1A25CBF9E800C730E5 /* MapClusterRenderer.swift in Sources */,
 				4332CD8D25C7A95A00C730E5 /* ProfileEmptyStateCell.swift in Sources */,
 				4332CE2725CC002C00C730E5 /* PostClusterItem.swift in Sources */,
 				432B988B25BD8C0800CD4CCC /* MapViewController.swift in Sources */,
 				438C532B25B3F5300092BE5B /* SceneDelegate.swift in Sources */,
+				43FDB0A825DA7B5700CDEC30 /* EditImageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

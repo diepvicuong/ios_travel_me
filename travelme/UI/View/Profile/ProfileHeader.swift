@@ -8,6 +8,10 @@
 import UIKit
 import FirebaseAuth
 
+protocol ProfileHeaderDelegate {
+    func editTap()
+}
+
 class ProfileHeader: UICollectionViewCell {
     
     var user: User?{
@@ -15,6 +19,8 @@ class ProfileHeader: UICollectionViewCell {
             reloadData()
         }
     }
+
+    var delegate: ProfileHeaderDelegate?
     
     //Using closure to init view
     private let profileImageView: CustomImageView = {
@@ -22,8 +28,8 @@ class ProfileHeader: UICollectionViewCell {
         iv.clipsToBounds = true
         iv.contentMode = .scaleAspectFill
         iv.image = UIImage(named: "account")
-        iv.layer.borderColor = UIColor(white: 0, alpha: 0.2).cgColor
-        iv.layer.borderWidth = 0.5
+        iv.layer.borderColor = StaticData.defaultBorderColor
+        iv.layer.borderWidth = StaticData.defaultBorderWidth
         return iv
     }()
     
@@ -33,7 +39,7 @@ class ProfileHeader: UICollectionViewCell {
     
     private lazy var followButton: UserProfileFollowButton = {
         let button = UserProfileFollowButton(type: .system)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: StaticData.ProfileHeader.labelFontSize)
         button.addTarget(self, action: #selector(handleTap), for: .touchUpInside)
         return button
     }()
@@ -41,7 +47,7 @@ class ProfileHeader: UICollectionViewCell {
     private var usernameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: StaticData.ProfileHeader.labelFontSize)
         return label
     }()
     
@@ -158,6 +164,10 @@ class ProfileHeader: UICollectionViewCell {
     
     @objc private func handleTap(){
         debugPrint("\(followButton.type)-button tap")
+        if followButton.type == .edit {
+            delegate?.editTap()
+            return
+        }
     }
 }
 
@@ -206,8 +216,8 @@ class UserProfileStatsLabel: UILabel {
     }
     
     private func setAttributedText() {
-        let attributedText = NSMutableAttributedString(string: "\(value)\n", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
-        attributedText.append(NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]))
+        let attributedText = NSMutableAttributedString(string: "\(value)\n", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: StaticData.ProfileHeader.labelFontSize)])
+        attributedText.append(NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: StaticData.ProfileHeader.labelFontSize)]))
         self.attributedText = attributedText
     }
 }
@@ -239,8 +249,8 @@ private class UserProfileFollowButton: UIButton {
     }
     
     private func sharedInit() {
-        titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        layer.borderColor = UIColor(white: 0, alpha: 0.2).cgColor
+        titleLabel?.font = UIFont.boldSystemFont(ofSize: StaticData.ProfileHeader.labelFontSize)
+        layer.borderColor = StaticData.defaultBorderColor
         layer.borderWidth = 1
         layer.cornerRadius = 3
         configureButton()
@@ -277,7 +287,7 @@ private class UserProfileFollowButton: UIButton {
         setTitle("Follow", for: .normal)
         setTitleColor(.white, for: .normal)
         backgroundColor = UIColor.mainBlue
-        layer.borderColor = UIColor(white: 0, alpha: 0.2).cgColor
+        layer.borderColor = StaticData.defaultBorderColor
         isUserInteractionEnabled = true
     }
     

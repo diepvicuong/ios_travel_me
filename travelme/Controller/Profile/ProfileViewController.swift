@@ -40,6 +40,7 @@ class ProfileViewController: AbstractCollectionVC {
         collectionView?.refreshControl = refreshControl
     
         NotificationCenter.default.addObserver(self, selector: #selector(handleRefresh), name: NSNotification.Name.updateProfilePost, object: nil)
+
     }
     
     func initLayout(){
@@ -99,7 +100,10 @@ class ProfileViewController: AbstractCollectionVC {
         }, withCancel: {err in
             self.collectionView?.refreshControl?.endRefreshing()
         })
-        header?.reloadData()
+        UserRepository.sharedInstance.fetchUser(withUID: uid){[weak self] user in
+            guard let strongSelf = self else {return}
+            strongSelf.header?.user = user
+        }
     }
 }
 
@@ -130,6 +134,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             //TODO: edit here
             header?.user = user
+            header?.delegate = self
         }
         
         return header!
@@ -172,20 +177,14 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout{
     }
 }
 
-//extension ProfileViewController: HomePostCellDelegate{
-//    func didTapComment(post: Post) {
-//        debugPrint("didTapComment")
-//    }
-//
-//    func didTapUser(user: User) {
-//        debugPrint("didTapUser")
-//    }
-//
-//    func didTapOptions(post: Post) {
-//        debugPrint("didTapOptions")
-//    }
-//
-//    func didLike(for cell: HomePostCollectionViewCell) {
-//        debugPrint("didLike")
-//    }
-//}
+extension ProfileViewController: ProfileHeaderDelegate{
+    func editTap() {
+        debugPrint("edit tapped")
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = mainStoryboard.instantiateViewController(withIdentifier: "EditProfileVC2") as! EditProfileVC
+        vc.user = self.header?.user
+        let navController = UINavigationController(rootViewController: vc)
+        navController.modalPresentationStyle = .fullScreen
+        self.present(navController, animated: true)
+    }
+}

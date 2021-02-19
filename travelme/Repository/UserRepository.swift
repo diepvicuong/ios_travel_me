@@ -32,7 +32,7 @@ class UserRepository {
         }
     }
     
-    func createUser(email: String, username: String, password: String, image: UIImage?, completionBlock: @escaping (Error?) -> Void) {
+    func createUser(email: String, username: String, password: String, phoneNumber: String?, image: UIImage?, completionBlock: @escaping (Error?) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
             if let err = error{
                 print("Failed to create user:", err)
@@ -42,26 +42,53 @@ class UserRepository {
             guard let uid = authResult?.user.uid else {return}
             if let image = image{
                 self.uploadUserProfileImage(image: image){ profileImageUrl in
-                    self.uploadUser(withUID: uid, username: username, profileImageUrl: profileImageUrl){
+                    self.updateUserInfo(withUID: uid, username: username, email: email, phoneNumber: phoneNumber, profileImageUrl: profileImageUrl){
                         completionBlock(nil)
                     }
                 }
             }else{
-                self.uploadUser(withUID: uid, username: username){
+                self.updateUserInfo(withUID: uid, username: username, email: email, phoneNumber: phoneNumber){
                     completionBlock(nil)
                 }
             }
         }
     }
     
-    func uploadUser(withUID uid: String, username: String, profileImageUrl: String? = nil, completion: @escaping (() -> ())){
+//    func uploadUser(withUID uid: String, username: String, email: String? = nil, phoneNumber: String? = nil, profileImageUrl: String? = nil, completion: @escaping (() -> ())){
+//        var dictionaryValues = ["username": username]
+//        if email != nil {
+//            dictionaryValues["email"] = email
+//        }
+//        if phoneNumber != nil {
+//            dictionaryValues["phoneNumber"] = phoneNumber
+//        }
+//        if profileImageUrl != nil {
+//            dictionaryValues["profileImageUrl"] = profileImageUrl
+//        }
+//        let values = [uid: dictionaryValues]
+//
+//        ref.child(collectionPathUser).updateChildValues(values){ (err, ref) in
+//            if let err = err {
+//                print("Failed to upload user to database:", err)
+//                return
+//            }
+//            completion()
+//        }
+//    }
+    
+    func updateUserInfo(withUID uid: String, username: String, email: String? = nil, phoneNumber: String? = nil, profileImageUrl: String? = nil, completion: @escaping (() -> ())){
         var dictionaryValues = ["username": username]
+        if email != nil {
+            dictionaryValues["email"] = email
+        }
+        if phoneNumber != nil {
+            dictionaryValues["phoneNumber"] = phoneNumber
+        }
         if profileImageUrl != nil {
             dictionaryValues["profileImageUrl"] = profileImageUrl
         }
-        let values = [uid: dictionaryValues]
         
-        ref.child(collectionPathUser).updateChildValues(values){ (err, ref) in
+        ref.child(collectionPathUser).child(uid).updateChildValues(dictionaryValues){ (err, ref) in
             if let err = err {
                 print("Failed to upload user to database:", err)
                 return
@@ -70,7 +97,7 @@ class UserRepository {
         }
     }
     
-    private func uploadUserProfileImage(image: UIImage, completion: @escaping (String) -> ()){
+    func uploadUserProfileImage(image: UIImage, completion: @escaping (String) -> ()){
         guard let uploadData = image.jpegData(compressionQuality: 1) else {
             print("Failed to compress image")
             return}

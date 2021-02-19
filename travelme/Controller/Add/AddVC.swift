@@ -155,8 +155,8 @@ class AddVC: AbstractViewController {
     @objc func pickImageTapped(_ sender: UITapGestureRecognizer){
         print("Choose an image")
         let ac = UIAlertController(title: "Choose Image".localized(), message: nil, preferredStyle: .actionSheet)
-        ac.addAction(UIAlertAction(title: "Camera".localized(), style: .default, handler: {_ in self.openCamera()}))
-        ac.addAction(UIAlertAction(title: "Gallery", style: .default, handler: {_ in self.openGallery()}))
+        ac.addAction(UIAlertAction(title: "Camera".localized(), style: .default, handler: {_ in self.openCamera(childVC: self)}))
+        ac.addAction(UIAlertAction(title: "Gallery", style: .default, handler: {_ in self.openGallery(childVC: self)}))
         ac.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel, handler: nil))
         present(ac, animated: true, completion: nil)
     }
@@ -188,23 +188,6 @@ class AddVC: AbstractViewController {
         if sender == tfTripName{
             tfTripName.showPopTip(isShow: false)
         }
-    }
-    
-    
-    private func openCamera(){
-        let imagePicker = UIImagePickerController()
-        imagePicker.allowsEditing = true
-        imagePicker.sourceType = .camera
-        imagePicker.delegate = self
-        present(imagePicker, animated: true)
-    }
-    
-    private func openGallery(){
-        let imagePicker = UIImagePickerController()
-        imagePicker.allowsEditing = true
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.delegate = self
-        present(imagePicker, animated: true)
     }
     
 }

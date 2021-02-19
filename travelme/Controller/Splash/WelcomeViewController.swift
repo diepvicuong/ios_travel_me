@@ -26,13 +26,11 @@ class WelcomeViewController: AbstractViewController {
     
         //check login with Gmail
         checkLoginGmail()
-
     }
     
     
     private func checkLoginGmail(){
         if let user = GIDSignIn.sharedInstance()?.currentUser{
-        
             // User signed in
             print("Gmail Signed in")
             gotoHome()
@@ -45,7 +43,6 @@ class WelcomeViewController: AbstractViewController {
                 print("Signed out")
                 gotoLogin()
             }
-            
         }
     }
     

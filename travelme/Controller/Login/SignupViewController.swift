@@ -51,6 +51,7 @@ class SignupViewController: AbstractViewController {
         tfEmail.label.text = "Email".localized() + "(*)"
         tfEmail.sizeToFit()
         tfEmail.clearButtonMode = .whileEditing
+        tfEmail.keyboardType = .emailAddress
         tfEmail.tag = TextFieldTag.Email.rawValue
         tfEmail.delegate = self
         
@@ -124,7 +125,7 @@ class SignupViewController: AbstractViewController {
         if let email = tfEmail.text, let password = tfPassword.text, let fullname = tfFullname.text {
             DispatchQueue.global(qos: .userInitiated).async {[weak self] in
                 guard self != nil else {return}
-                UserRepository.sharedInstance.createUser(email: email, username: fullname, password: password, image: nil){ [weak self] err in
+                UserRepository.sharedInstance.createUser(email: email, username: fullname, password: password, phoneNumber: self?.tfPhoneNumber.text, image: nil){ [weak self] err in
                     self?.dismissLoadingProgress()
                     DispatchQueue.main.async {[weak self] in
                         guard let strongSelf = self else {return}

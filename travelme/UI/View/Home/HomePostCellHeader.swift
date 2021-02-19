@@ -33,8 +33,8 @@ class HomePostCellHeader: UIView {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.image = UIImage(named: "account")
-        imageView.layer.borderColor = UIColor(white: 0, alpha: 0.2).cgColor
-        imageView.layer.borderWidth = 0.5
+        imageView.layer.borderColor = StaticData.defaultBorderColor
+        imageView.layer.borderWidth = StaticData.defaultBorderWidth
         imageView.isUserInteractionEnabled = true
         return imageView
     }()

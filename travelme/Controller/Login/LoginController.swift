@@ -39,6 +39,7 @@ class LoginController: AbstractViewController {
         tfEmail.placeholder = "Email".localized()
         tfEmail.sizeToFit()
         tfEmail.clearButtonMode = .whileEditing
+        tfEmail.keyboardType = .emailAddress
         tfEmail.delegate = self
         tfEmail.tag = TextFieldTag.Email.rawValue
         

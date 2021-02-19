@@ -11,7 +11,7 @@ import FirebaseAuth
 import SPPermissions
 
 class HomeViewController: AbstractCollectionVC {
-    @IBOutlet weak var collectionView: UICollectionView?
+    @IBOutlet weak var collectionView: UICollectionView!
 //    var posts = [Post]()
     
     deinit {
@@ -32,6 +32,11 @@ class HomeViewController: AbstractCollectionVC {
         NotificationCenter.default.addObserver(self, selector: #selector(handleRefresh), name: NSNotification.Name.updateProfilePost, object: nil)
 
         fetchAllPosts()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.collectionView?.refreshControl?.endRefreshing()
     }
     
     func initLayout(){
@@ -69,6 +74,16 @@ class HomeViewController: AbstractCollectionVC {
         showEmptyStateViewIfNeeded()
         fetchPostsForCurrentUser()
         fetchFollowingUserPosts()
+        
+        //Dismiss the refresh control
+        DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+            
+            if let isRefreshing = self.collectionView.refreshControl?.isRefreshing{
+                //TODO: show snackbar "No internet connection"
+                debugPrint("No internet connection")
+            }
+            self.collectionView.refreshControl?.endRefreshing()
+        }
     }
     
     override func showEmptyStateViewIfNeeded(){
@@ -130,7 +145,7 @@ class HomeViewController: AbstractCollectionVC {
     }
     
     private func createPermission(){
-        let permissions = [SPPermission.camera, SPPermission.locationWhenInUse].filter { !$0.isAuthorized }
+        let permissions = [SPPermission.camera].filter { !$0.isAuthorized }
         if permissions.isEmpty{
             debugPrint("All permission are allowed")
             return

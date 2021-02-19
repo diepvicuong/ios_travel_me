@@ -44,7 +44,7 @@
                                             <constraint firstAttribute="height" constant="50" id="Zw1-1c-fhF"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="email"/>
                                         <connections>
                                             <action selector="textFieldEditingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="gRA-Lh-I5e"/>
                                         </connections>
@@ -246,7 +246,7 @@
                                         <rect key="frame" x="10" y="120.00000000000003" width="394" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="email"/>
                                         <connections>
                                             <action selector="textFieldEditingChanged:" destination="hTV-vm-yr1" eventType="editingChanged" id="wkH-DN-moQ"/>
                                         </connections>
@@ -680,11 +680,45 @@
                     <navigationItem key="navigationItem" title="Profile" id="naz-Sk-os0"/>
                     <connections>
                         <outlet property="collectionView" destination="qAT-fT-ZDf" id="FlL-UV-d8A"/>
+                        <segue destination="KUa-fK-jNZ" kind="show" id="24q-jI-ogS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fac-Ho-MfA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3900" y="2079"/>
+        </scene>
+        <!--Edit ProfileVC-->
+        <scene sceneID="nOT-gJ-vZb">
+            <objects>
+                <viewController storyboardIdentifier="EditProfileVC2" id="KUa-fK-jNZ" customClass="EditProfileVC" customModule="travelme" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1bH-zm-tX5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1V3-7t-UGw">
+                                <rect key="frame" x="0.0" y="56" width="414" height="611"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" systemColor="systemBackgroundColor"/>
+                                <color key="sectionIndexBackgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="EU8-eP-ue5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1V3-7t-UGw" firstAttribute="leading" secondItem="EU8-eP-ue5" secondAttribute="leading" id="KCW-1l-zVz"/>
+                            <constraint firstItem="EU8-eP-ue5" firstAttribute="bottom" secondItem="1V3-7t-UGw" secondAttribute="bottom" id="cJD-Zl-75m"/>
+                            <constraint firstItem="EU8-eP-ue5" firstAttribute="trailing" secondItem="1V3-7t-UGw" secondAttribute="trailing" id="cQL-LP-O88"/>
+                            <constraint firstItem="1V3-7t-UGw" firstAttribute="top" secondItem="EU8-eP-ue5" secondAttribute="top" id="hdh-5r-Zci"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="TVS-k7-jjg"/>
+                    <connections>
+                        <outlet property="tableView" destination="1V3-7t-UGw" id="Qjz-TP-OIF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4l9-NZ-O7V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4880" y="2079"/>
         </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="ibg-uF-uTw">
@@ -800,34 +834,34 @@
     </scenes>
     <designables>
         <designable name="35E-iY-iOO">
-            <size key="intrinsicContentSize" width="66" height="34"/>
+            <size key="intrinsicContentSize" width="32" height="34"/>
         </designable>
         <designable name="HDG-DE-YIH">
-            <size key="intrinsicContentSize" width="66" height="34"/>
+            <size key="intrinsicContentSize" width="32" height="34"/>
         </designable>
         <designable name="Kd6-af-nff">
             <size key="intrinsicContentSize" width="32" height="34"/>
         </designable>
         <designable name="Kp5-CY-yoh">
-            <size key="intrinsicContentSize" width="394" height="37"/>
+            <size key="intrinsicContentSize" width="12" height="26.666666666666668"/>
         </designable>
         <designable name="Vhk-8N-eUA">
             <size key="intrinsicContentSize" width="32" height="34"/>
         </designable>
         <designable name="agD-77-Bma">
-            <size key="intrinsicContentSize" width="394" height="37"/>
+            <size key="intrinsicContentSize" width="12" height="26.666666666666668"/>
         </designable>
         <designable name="dTT-kM-PfI">
-            <size key="intrinsicContentSize" width="394" height="37"/>
+            <size key="intrinsicContentSize" width="12" height="26.666666666666668"/>
         </designable>
         <designable name="g43-2Z-Pld">
-            <size key="intrinsicContentSize" width="66" height="34"/>
+            <size key="intrinsicContentSize" width="32" height="34"/>
         </designable>
         <designable name="grA-ZL-czd">
-            <size key="intrinsicContentSize" width="66" height="34"/>
+            <size key="intrinsicContentSize" width="32" height="34"/>
         </designable>
         <designable name="w4E-XL-GBC">
-            <size key="intrinsicContentSize" width="394" height="37"/>
+            <size key="intrinsicContentSize" width="12" height="26.666666666666668"/>
         </designable>
     </designables>
     <resources>
