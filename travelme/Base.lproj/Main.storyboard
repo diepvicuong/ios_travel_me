@@ -621,18 +621,34 @@
             </objects>
             <point key="canvasLocation" x="1966.6666666666667" y="2078.804347826087"/>
         </scene>
-        <!--Statistic-->
+        <!--Search-->
         <scene sceneID="poR-Ko-SRE">
             <objects>
-                <viewController id="Gi4-hg-IT7" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchUserVC" id="Gi4-hg-IT7" customClass="SearchUserVC" customModule="travelme" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xFF-mL-3XE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="T1V-Qn-OeD">
+                                <rect key="frame" x="0.0" y="56" width="414" height="611"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="hzl-Hi-7WX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="T1V-Qn-OeD" firstAttribute="top" secondItem="hzl-Hi-7WX" secondAttribute="top" id="DMR-tb-aYG"/>
+                            <constraint firstItem="hzl-Hi-7WX" firstAttribute="trailing" secondItem="T1V-Qn-OeD" secondAttribute="trailing" id="cv6-cL-cUv"/>
+                            <constraint firstItem="hzl-Hi-7WX" firstAttribute="bottom" secondItem="T1V-Qn-OeD" secondAttribute="bottom" id="uX7-d3-St0"/>
+                            <constraint firstItem="T1V-Qn-OeD" firstAttribute="leading" secondItem="hzl-Hi-7WX" secondAttribute="leading" id="wiA-ON-Za1"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="chart-outline" selectedImage="chart-filled" id="xgi-Ie-EeH"/>
-                    <navigationItem key="navigationItem" title="Statistic" id="m20-tb-XPu"/>
+                    <tabBarItem key="tabBarItem" title="" image="search-outline" selectedImage="search-filled" id="xgi-Ie-EeH"/>
+                    <navigationItem key="navigationItem" title="Search" id="m20-tb-XPu"/>
+                    <connections>
+                        <outlet property="tableView" destination="T1V-Qn-OeD" id="hLe-Cc-rr1"/>
+                        <segue destination="mjf-VW-Ok5" kind="show" id="Jaz-Hr-K3u"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5nF-0E-t0m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -686,6 +702,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fac-Ho-MfA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3900" y="2079"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="ufC-fp-88e">
+            <objects>
+                <viewController storyboardIdentifier="ProfileViewController2" id="mjf-VW-Ok5" customClass="ProfileViewController" customModule="travelme" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xz9-BK-pHc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RnN-WL-w5y">
+                                <rect key="frame" x="0.0" y="56" width="414" height="611"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="czG-BR-iVE">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="LFy-ha-AQm">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="HFL-eR-H8h">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="d3k-jd-o4R"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="d3k-jd-o4R" firstAttribute="bottom" secondItem="RnN-WL-w5y" secondAttribute="bottom" id="BDL-Sd-Ccl"/>
+                            <constraint firstItem="RnN-WL-w5y" firstAttribute="top" secondItem="d3k-jd-o4R" secondAttribute="top" id="dqw-Te-NeJ"/>
+                            <constraint firstItem="RnN-WL-w5y" firstAttribute="leading" secondItem="d3k-jd-o4R" secondAttribute="leading" id="ub3-xA-FuQ"/>
+                            <constraint firstAttribute="trailing" secondItem="RnN-WL-w5y" secondAttribute="trailing" id="zpK-Fa-FYX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="52B-ZS-RbX"/>
+                    <connections>
+                        <outlet property="collectionView" destination="RnN-WL-w5y" id="sV8-4j-lIt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mE1-pl-jBD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2938" y="2903"/>
         </scene>
         <!--Edit ProfileVC-->
         <scene sceneID="nOT-gJ-vZb">
@@ -834,34 +897,34 @@
     </scenes>
     <designables>
         <designable name="35E-iY-iOO">
-            <size key="intrinsicContentSize" width="32" height="34"/>
+            <size key="intrinsicContentSize" width="66" height="34"/>
         </designable>
         <designable name="HDG-DE-YIH">
-            <size key="intrinsicContentSize" width="32" height="34"/>
+            <size key="intrinsicContentSize" width="66" height="34"/>
         </designable>
         <designable name="Kd6-af-nff">
             <size key="intrinsicContentSize" width="32" height="34"/>
         </designable>
         <designable name="Kp5-CY-yoh">
-            <size key="intrinsicContentSize" width="12" height="26.666666666666668"/>
+            <size key="intrinsicContentSize" width="394" height="37"/>
         </designable>
         <designable name="Vhk-8N-eUA">
             <size key="intrinsicContentSize" width="32" height="34"/>
         </designable>
         <designable name="agD-77-Bma">
-            <size key="intrinsicContentSize" width="12" height="26.666666666666668"/>
+            <size key="intrinsicContentSize" width="394" height="37"/>
         </designable>
         <designable name="dTT-kM-PfI">
-            <size key="intrinsicContentSize" width="12" height="26.666666666666668"/>
+            <size key="intrinsicContentSize" width="394" height="37"/>
         </designable>
         <designable name="g43-2Z-Pld">
-            <size key="intrinsicContentSize" width="32" height="34"/>
+            <size key="intrinsicContentSize" width="66" height="34"/>
         </designable>
         <designable name="grA-ZL-czd">
-            <size key="intrinsicContentSize" width="32" height="34"/>
+            <size key="intrinsicContentSize" width="66" height="34"/>
         </designable>
         <designable name="w4E-XL-GBC">
-            <size key="intrinsicContentSize" width="12" height="26.666666666666668"/>
+            <size key="intrinsicContentSize" width="394" height="37"/>
         </designable>
     </designables>
     <resources>
@@ -870,8 +933,6 @@
         <image name="calendar-end" width="24" height="24"/>
         <image name="calendar-start" width="24" height="24"/>
         <image name="camera" width="80" height="80"/>
-        <image name="chart-filled" width="24" height="24"/>
-        <image name="chart-outline" width="24" height="24"/>
         <image name="home-fill" width="24" height="24"/>
         <image name="home-outline" width="24" height="24"/>
         <image name="location" width="24" height="24"/>
@@ -881,6 +942,8 @@
         <image name="my-location-selected" width="22" height="22"/>
         <image name="profile-filled" width="24" height="24"/>
         <image name="profile-outline" width="24" height="24"/>
+        <image name="search-filled" width="21" height="20"/>
+        <image name="search-outline" width="24" height="24"/>
         <image name="tag" width="24" height="24"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

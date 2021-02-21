@@ -32,6 +32,36 @@ class UserRepository {
         }
     }
     
+    func fetchAllUser(includeCurrentUser: Bool, completion: @escaping ([User]) -> (), withCancel cancel: ((Error)-> ())?){
+        guard let currentUid = Auth.auth().currentUser?.uid else {return}
+        ref.child(collectionPathUser).observeSingleEvent(of: .value, with: {snapshot in
+            guard var userDictionary = snapshot.value as? [String: Any] else {return}
+            
+            if !includeCurrentUser{
+                userDictionary.removeValue(forKey: currentUid)
+            }
+            let userIds = userDictionary.keys
+            var users: [User] = []
+            var count = 0
+            
+            debugPrint("userIds:", userIds)
+            
+            for (index, uid) in userIds.enumerated(){
+
+                self.fetchUser(withUID: uid){ user in
+                    users.append(user)
+                    count += 1
+                    if userIds.count == count{
+                        completion(users)
+                    }
+                }
+            }
+        }){err in
+            debugPrint("Failed to fetch all user:", err)
+            cancel?(err)
+        }
+    }
+    
     func createUser(email: String, username: String, password: String, phoneNumber: String?, image: UIImage?, completionBlock: @escaping (Error?) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
             if let err = error{
@@ -53,28 +83,6 @@ class UserRepository {
             }
         }
     }
-    
-//    func uploadUser(withUID uid: String, username: String, email: String? = nil, phoneNumber: String? = nil, profileImageUrl: String? = nil, completion: @escaping (() -> ())){
-//        var dictionaryValues = ["username": username]
-//        if email != nil {
-//            dictionaryValues["email"] = email
-//        }
-//        if phoneNumber != nil {
-//            dictionaryValues["phoneNumber"] = phoneNumber
-//        }
-//        if profileImageUrl != nil {
-//            dictionaryValues["profileImageUrl"] = profileImageUrl
-//        }
-//        let values = [uid: dictionaryValues]
-//
-//        ref.child(collectionPathUser).updateChildValues(values){ (err, ref) in
-//            if let err = err {
-//                print("Failed to upload user to database:", err)
-//                return
-//            }
-//            completion()
-//        }
-//    }
     
     func updateUserInfo(withUID uid: String, username: String, email: String? = nil, phoneNumber: String? = nil, profileImageUrl: String? = nil, completion: @escaping (() -> ())){
         var dictionaryValues = ["username": username]
@@ -124,6 +132,22 @@ class UserRepository {
         }
     }
     
+
+    func numberOfUserPosts(withUID uid: String, completion: @escaping (Int) -> ()) {
+        ref.child(collectionPathPost).child(uid).observeSingleEvent(of: .value) { (snapshot) in
+            if let dictionaries = snapshot.value as? [String: Any] {
+                completion(dictionaries.count)
+            } else {
+                completion(0)
+            }
+        }
+    }
+    
+    
+}
+
+//MARK: - Follow & unfollow
+extension UserRepository{
     func numberOfFollowing(withUID uid: String, completion: @escaping (Int) -> ()){
         ref.child(collectionPathFollowing).child(uid).observeSingleEvent(of: .value){ snapshot in
             if let dictionaries = snapshot.value as? [String: Any]{
@@ -144,14 +168,62 @@ class UserRepository {
             }
         }
     }
-    
-    func numberOfUserPosts(withUID uid: String, completion: @escaping (Int) -> ()) {
-        ref.child(collectionPathPost).child(uid).observeSingleEvent(of: .value) { (snapshot) in
-            if let dictionaries = snapshot.value as? [String: Any] {
-                completion(dictionaries.count)
+    func isFollowingUser(withUID uid: String, completion: @escaping (Bool) -> (), withCancel cancel: ((Error) -> ())?){
+        guard let currentLoggedInUserId = Auth.auth().currentUser?.uid else { return }
+        
+        ref.child(collectionPathFollowing).child(currentLoggedInUserId).child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let isFollowing = snapshot.value as? Int, isFollowing == 1 {
+                completion(true)
             } else {
-                completion(0)
+                completion(false)
             }
+        }) { (err) in
+            print("Failed to check if following:", err)
+            cancel?(err)
+        }
+    }
+    
+    func followUser(withUID uid: String, completion: @escaping (Error?) -> ()) {
+        guard let currentLoggedInUserId = Auth.auth().currentUser?.uid else { return }
+        
+        let values = [uid: 1]
+        ref.child(collectionPathFollowing).child(currentLoggedInUserId).updateChildValues(values) { [weak self] (err, ref) in
+            guard let strongSelf = self else {return}
+            if let err = err {
+                completion(err)
+                return
+            }
+            
+            let values = [currentLoggedInUserId: 1]
+            strongSelf.ref.child(strongSelf.collectionPathFollower).child(uid).updateChildValues(values) { (err, ref) in
+                if let err = err {
+                    completion(err)
+                    return
+                }
+                completion(nil)
+            }
+        }
+    }
+    
+    func unfollowUser(withUID uid: String, completion: @escaping (Error?) -> ()) {
+        guard let currentLoggedInUserId = Auth.auth().currentUser?.uid else { return }
+        
+        ref.child(collectionPathFollowing).child(currentLoggedInUserId).child(uid).removeValue {[weak self] (err, _) in
+            guard let strongSelf = self else {return}
+            if let err = err {
+                print("Failed to remove user from following:", err)
+                completion(err)
+                return
+            }
+            
+            strongSelf.ref.child(strongSelf.collectionPathFollower).child(uid).child(currentLoggedInUserId).removeValue(completionBlock: { (err, _) in
+                if let err = err {
+                    print("Failed to remove user from followers:", err)
+                    completion(err)
+                    return
+                }
+                completion(nil)
+            })
         }
     }
 }

@@ -131,17 +131,18 @@ class ProfileHeader: UICollectionViewCell {
         }
         
         let previousButtonType = followButton.type
-        followButton.type = .loading
+//        followButton.type = .loading
         
-//        Database.database().isFollowingUser(withUID: userId, completion: { (following) in
-//            if following {
-//                self.followButton.type = .unfollow
-//            } else {
-//                self.followButton.type = .follow
-//            }
-//        }) { (err) in
-//            self.followButton.type = previousButtonType
-//        }
+        UserRepository.sharedInstance.isFollowingUser(withUID: userId, completion: { (following) in
+            if following {
+                self.followButton.type = .unfollow
+            } else {
+                self.followButton.type = .follow
+            }
+        }) { (err) in
+            self.followButton.type = previousButtonType
+        }
+        
     }
     
     private func reloadUserStats() {
@@ -152,22 +153,48 @@ class ProfileHeader: UICollectionViewCell {
             self.postsLabel.setValue(count)
         }
         
-//
-//        Database.database().numberOfFollowersForUser(withUID: uid) { (count) in
-//            self.followersLabel.setValue(count)
-//        }
-//
-//        Database.database().numberOfFollowingForUser(withUID: uid) { (count) in
-//            self.followingLabel.setValue(count)
-//        }
+
+        UserRepository.sharedInstance.numberOfFollowers(withUID: uid) { (count) in
+            self.followersLabel.setValue(count)
+        }
+
+        UserRepository.sharedInstance.numberOfFollowing(withUID: uid) { (count) in
+            self.followingLabel.setValue(count)
+        }
     }
     
     @objc private func handleTap(){
         debugPrint("\(followButton.type)-button tap")
+        guard let userId = user?.uid else { return }
+
         if followButton.type == .edit {
             delegate?.editTap()
             return
         }
+        let previouBtnType = followButton.type
+        followButton.type = .loading
+        
+        if previouBtnType == .follow{
+            UserRepository.sharedInstance.followUser(withUID: userId){ err in
+                if err != nil {
+                    self.followButton.type = previouBtnType
+                    return
+                }
+                self.reloadFollowButton()
+                self.reloadUserStats()
+            }
+        }else if previouBtnType == .unfollow{
+            UserRepository.sharedInstance.unfollowUser(withUID: userId){ err in
+                if err != nil {
+                    self.followButton.type = previouBtnType
+                    return
+                }
+                self.reloadFollowButton()
+                self.reloadUserStats()
+            }
+        }
+        
+        NotificationCenter.default.post(name: .updateProfilePost, object: nil)
     }
 }
 
@@ -294,7 +321,7 @@ private class UserProfileFollowButton: UIButton {
     private func setupUnfollowStyle() {
         setTitle("Unfollow", for: .normal)
         setTitleColor(.black, for: .normal)
-        backgroundColor = .white
+        backgroundColor = .lightGray
         isUserInteractionEnabled = true
     }
 }

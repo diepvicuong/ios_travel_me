@@ -41,6 +41,8 @@
 		4332CE2225CBFCEC00C730E5 /* PostOnMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4332CE2125CBFCEC00C730E5 /* PostOnMap.swift */; };
 		4332CE2725CC002C00C730E5 /* PostClusterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4332CE2625CC002C00C730E5 /* PostClusterItem.swift */; };
 		4332CE2D25CD25F500C730E5 /* CustomMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4332CE2C25CD25F300C730E5 /* CustomMarkerView.swift */; };
+		4341518E25E25090007BD740 /* SearchUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4341518D25E25090007BD740 /* SearchUserVC.swift */; };
+		4341519325E252DB007BD740 /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4341519225E252DB007BD740 /* UserSearchCell.swift */; };
 		435444A225D2417B00144BAE /* LocationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435444A125D2417B00144BAE /* LocationUtils.swift */; };
 		4356591325D80E3C007C0848 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4356591225D80E3C007C0848 /* Toast.swift */; };
 		438B328025D396AC00891B84 /* NumberExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438B327F25D396AC00891B84 /* NumberExt.swift */; };
@@ -111,6 +113,8 @@
 		4332CE2125CBFCEC00C730E5 /* PostOnMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostOnMap.swift; sourceTree = "<group>"; };
 		4332CE2625CC002C00C730E5 /* PostClusterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostClusterItem.swift; sourceTree = "<group>"; };
 		4332CE2C25CD25F300C730E5 /* CustomMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMarkerView.swift; sourceTree = "<group>"; };
+		4341518D25E25090007BD740 /* SearchUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserVC.swift; sourceTree = "<group>"; };
+		4341519225E252DB007BD740 /* UserSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
 		435444A125D2417B00144BAE /* LocationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationUtils.swift; sourceTree = "<group>"; };
 		4356591225D80E3C007C0848 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		438B327F25D396AC00891B84 /* NumberExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberExt.swift; sourceTree = "<group>"; };
@@ -252,11 +256,13 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
-		4332CBAA25BE5E3300C730E5 /* Statistics */ = {
+		4332CBAA25BE5E3300C730E5 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				4341518D25E25090007BD740 /* SearchUserVC.swift */,
+				4341519225E252DB007BD740 /* UserSearchCell.swift */,
 			);
-			path = Statistics;
+			path = Search;
 			sourceTree = "<group>";
 		};
 		4332CBAB25BE5E5400C730E5 /* Add */ = {
@@ -398,7 +404,7 @@
 				4332CBB025BE5E9D00C730E5 /* Home */,
 				4332CBAC25BE5E8F00C730E5 /* Splash */,
 				4332CBAB25BE5E5400C730E5 /* Add */,
-				4332CBAA25BE5E3300C730E5 /* Statistics */,
+				4332CBAA25BE5E3300C730E5 /* Search */,
 				432B988925BD8BEB00CD4CCC /* Map */,
 				432B988825BD8BDB00CD4CCC /* Profile */,
 				432B988125BD8BBD00CD4CCC /* Login */,
@@ -730,12 +736,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4356591325D80E3C007C0848 /* Toast.swift in Sources */,
+				4341518E25E25090007BD740 /* SearchUserVC.swift in Sources */,
 				4332CC8C25C159AA00C730E5 /* Post.swift in Sources */,
 				4332CD8125C6C24700C730E5 /* CustomImageView.swift in Sources */,
 				4332CBC925BEA73100C730E5 /* UIViewExt.swift in Sources */,
 				4332CDB025C9A87400C730E5 /* DateTimeExt.swift in Sources */,
 				4318B30125B58D0C001B8B9E /* CustomTextField.swift in Sources */,
 				4318B2F225B53F87001B8B9E /* FirebaseAuthManager.swift in Sources */,
+				4341519325E252DB007BD740 /* UserSearchCell.swift in Sources */,
 				43ADF14925B439C000192D11 /* StringUtils.swift in Sources */,
 				438C532D25B3F5300092BE5B /* LoginController.swift in Sources */,
 				4332CD7725C6AD6100C730E5 /* ProfileViewController.swift in Sources */,

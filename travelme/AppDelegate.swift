@@ -78,7 +78,7 @@ extension AppDelegate: GIDSignInDelegate{
                 print("Error occurs when authenticate with Firebase: \(error.localizedDescription)")
             }
                 
-            UserRepository.sharedInstance.updateUserInfo(withUID: authResult!.user.uid, username: "", email: authResult?.user.email, phoneNumber: authResult?.user.phoneNumber, profileImageUrl: authResult?.user.photoURL?.absoluteString){
+            UserRepository.sharedInstance.updateUserInfo(withUID: authResult!.user.uid, username: authResult?.user.email ?? "", email: authResult?.user.email, phoneNumber: authResult?.user.phoneNumber, profileImageUrl: authResult?.user.photoURL?.absoluteString){
                 debugPrint("Upload user from gmail success")
             }
             // Post notification after user successfully sign in

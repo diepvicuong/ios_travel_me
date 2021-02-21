@@ -98,7 +98,7 @@ class MapViewController: AbstractViewController {
         //https://stackoverflow.com/questions/40837717/custom-marker-using-gmuclustermanager/53928566#53928566
         //http://studyswift.blogspot.com/2016/07/marker-clustering-with-googles-utility.html
         
-        let buckets: [NSNumber] = [5, 10 , 20, 50 , 100]
+        let buckets: [NSNumber] = [50, 500 , 5000, 20000 , 50000]
         var clusterImages: [UIImage] = []
         for id in 1...buckets.count{
             clusterImages.append(UIImage(named: "cluster\(id)")!)
@@ -131,7 +131,8 @@ class MapViewController: AbstractViewController {
     @objc func handleRefreshPost(){
         guard let currentUserId = Auth.auth().currentUser?.uid else {return}
         self.posts.removeAll()
-        
+        self.postItemDic.removeAll()
+
         PostRepository.sharedInstance.fetchFollowingUserPost(withUID: currentUserId, completion: {[weak self]
             posts in
             guard let strongSelf = self else {return}

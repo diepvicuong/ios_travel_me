@@ -81,7 +81,7 @@ class ProfileViewController: AbstractCollectionVC {
     
     @objc func handleRefresh(){
         debugPrint("handleRefresh")
-        guard let uid = Auth.auth().currentUser?.uid else {return}
+        guard let uid = user?.uid else {return}
         
         posts.removeAll()
         
