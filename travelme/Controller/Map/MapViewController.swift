@@ -7,6 +7,7 @@
 
 import UIKit
 import GoogleMaps
+import GooglePlaces
 import GoogleMapsUtils
 import SPPermissions
 import FirebaseAuth
@@ -15,6 +16,8 @@ class MapViewController: AbstractViewController {
     @IBOutlet weak var myMapView: GMSMapView!
     @IBOutlet weak var btnMapType: UISegmentedControl!
     @IBOutlet weak var btnCurrentLoc: UIButton!
+    @IBOutlet weak var tfSearchBar: CustomTextField!
+    
     //BOTTOM SHEET
     let bottomSheetVC = BottomSheetViewController()
 
@@ -63,7 +66,7 @@ class MapViewController: AbstractViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        initContent()
+        initLayout()
         initMap()
         NotificationCenter.default.addObserver(self, selector: #selector(handleRefreshPost), name: NSNotification.Name.updateProfilePost, object: nil)
         
@@ -77,7 +80,7 @@ class MapViewController: AbstractViewController {
     }
     
     
-    func initContent(){
+    func initLayout(){
         navigationController?.setNavigationBarHidden(true, animated: false)
         
         // called normal.png and selected.png.
@@ -85,6 +88,12 @@ class MapViewController: AbstractViewController {
         let selectedImage = UIImage(named: "my-location")
         btnCurrentLoc.setImage(normalImage, for: .normal)
         btnCurrentLoc.setImage(selectedImage, for: .selected)
+        
+        //Searchbar
+        tfSearchBar.roundCorners(corners: .allCorners, radius: 50.0)
+        tfSearchBar.placeholder = "Search location".localized()
+        tfSearchBar.allowsEditingTextAttributes = false
+        tfSearchBar.addTarget(self, action: #selector(searchMapHandle), for: .touchDown)
     }
     
     func initMap(){
@@ -149,9 +158,25 @@ class MapViewController: AbstractViewController {
             strongSelf.drawMapPost()
         } withCancel: { (err) in
             debugPrint("Failed to handleRefreshPost:", err)
-
         }
+    }
+    
+    @objc func searchMapHandle(textfield: UITextField){
+        let autocompleteController = GMSAutocompleteViewController()
+            autocompleteController.delegate = self
 
+            // Specify the place data types to return.
+            let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.name.rawValue) |
+              UInt(GMSPlaceField.placeID.rawValue))
+            autocompleteController.placeFields = fields
+
+            // Specify a filter.
+            let filter = GMSAutocompleteFilter()
+            filter.type = .address
+            autocompleteController.autocompleteFilter = filter
+
+            // Display the autocomplete view controller.
+            present(autocompleteController, animated: true, completion: nil)
     }
     
     @IBAction func changeMapTypeHandle(_ sender: UISegmentedControl) {
@@ -366,5 +391,34 @@ extension MapViewController : CLLocationManagerDelegate{
         }
         
         self.myCurrentLocation = location
+    }
+}
+
+//MARK: - GMSAutocompleteViewControllerDelegate
+extension MapViewController: GMSAutocompleteViewControllerDelegate{
+    // Handle the user's selection
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        debugPrint("Place name: \(place.name)")
+        debugPrint("PlaceID: \(place.placeID)")
+        debugPrint("Place attributions: \(place.attributions)")
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        debugPrint("Error: ", error.localizedDescription)
+    }
+    
+    // Handle cancel
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+
     }
 }

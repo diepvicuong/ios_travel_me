@@ -379,8 +379,23 @@
                                 <rect key="frame" x="0.0" y="56" width="414" height="611"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cnr-P8-FpV" customClass="CustomTextField" customModule="travelme" customModuleProvider="target">
+                                <rect key="frame" x="10" y="66" width="394" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Wbv-Vq-KEJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="search-outline"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5UO-z0-1Y6">
-                                <rect key="frame" x="10" y="66" width="140" height="29"/>
+                                <rect key="frame" x="10" y="116" width="140" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="5UO-z0-1Y6" secondAttribute="height" multiplier="5:1" id="h5Z-Ri-OXb"/>
                                     <constraint firstAttribute="width" constant="140" id="xry-Ic-qME"/>
@@ -394,7 +409,7 @@
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXN-gW-Qkm">
-                                <rect key="frame" x="382" y="66" width="22" height="22"/>
+                                <rect key="frame" x="382" y="116" width="22" height="22"/>
                                 <state key="normal" image="my-location"/>
                                 <state key="selected" image="my-location-selected"/>
                                 <connections>
@@ -405,13 +420,16 @@
                         <viewLayoutGuide key="safeArea" id="szB-cv-84l"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <constraints>
+                            <constraint firstItem="szB-cv-84l" firstAttribute="trailing" secondItem="cnr-P8-FpV" secondAttribute="trailing" constant="10" id="49m-Im-VQW"/>
                             <constraint firstItem="tkT-ol-e6G" firstAttribute="top" secondItem="szB-cv-84l" secondAttribute="top" id="7lT-fZ-8gA"/>
                             <constraint firstItem="tkT-ol-e6G" firstAttribute="leading" secondItem="szB-cv-84l" secondAttribute="leading" id="KbL-ju-8YN"/>
+                            <constraint firstItem="cnr-P8-FpV" firstAttribute="leading" secondItem="szB-cv-84l" secondAttribute="leading" constant="10" id="QyG-ge-aAb"/>
+                            <constraint firstItem="bXN-gW-Qkm" firstAttribute="top" secondItem="cnr-P8-FpV" secondAttribute="bottom" constant="10" id="R1c-3v-0wR"/>
+                            <constraint firstItem="5UO-z0-1Y6" firstAttribute="top" secondItem="cnr-P8-FpV" secondAttribute="bottom" constant="10" id="Su8-19-Pkd"/>
                             <constraint firstItem="szB-cv-84l" firstAttribute="trailing" secondItem="tkT-ol-e6G" secondAttribute="trailing" id="T4l-cA-mPn"/>
-                            <constraint firstItem="5UO-z0-1Y6" firstAttribute="top" secondItem="szB-cv-84l" secondAttribute="top" constant="10" id="fWs-qP-4SZ"/>
-                            <constraint firstItem="5UO-z0-1Y6" firstAttribute="leading" secondItem="szB-cv-84l" secondAttribute="leading" constant="10" id="hUk-rL-HhH"/>
-                            <constraint firstItem="bXN-gW-Qkm" firstAttribute="top" secondItem="szB-cv-84l" secondAttribute="top" constant="10" id="n1a-oc-tSL"/>
-                            <constraint firstItem="szB-cv-84l" firstAttribute="trailing" secondItem="bXN-gW-Qkm" secondAttribute="trailing" constant="10" id="q4g-1D-XLx"/>
+                            <constraint firstItem="cnr-P8-FpV" firstAttribute="top" secondItem="szB-cv-84l" secondAttribute="top" constant="10" id="W1n-B2-tnm"/>
+                            <constraint firstItem="5UO-z0-1Y6" firstAttribute="leading" secondItem="szB-cv-84l" secondAttribute="leading" constant="10" id="ZDS-nJ-vXn"/>
+                            <constraint firstItem="szB-cv-84l" firstAttribute="trailing" secondItem="bXN-gW-Qkm" secondAttribute="trailing" constant="10" id="lUi-Sp-cus"/>
                             <constraint firstItem="szB-cv-84l" firstAttribute="bottom" secondItem="tkT-ol-e6G" secondAttribute="bottom" id="wzf-EX-39z"/>
                         </constraints>
                     </view>
@@ -421,6 +439,7 @@
                         <outlet property="btnCurrentLoc" destination="bXN-gW-Qkm" id="SzI-qg-CFz"/>
                         <outlet property="btnMapType" destination="5UO-z0-1Y6" id="66o-or-gJT"/>
                         <outlet property="myMapView" destination="tkT-ol-e6G" id="v0I-SK-g8L"/>
+                        <outlet property="tfSearchBar" destination="cnr-P8-FpV" id="JSd-hK-tZq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hY3-gL-eNt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -913,6 +932,9 @@
         </designable>
         <designable name="agD-77-Bma">
             <size key="intrinsicContentSize" width="394" height="37"/>
+        </designable>
+        <designable name="cnr-P8-FpV">
+            <size key="intrinsicContentSize" width="64" height="34"/>
         </designable>
         <designable name="dTT-kM-PfI">
             <size key="intrinsicContentSize" width="394" height="37"/>

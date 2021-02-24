@@ -56,6 +56,7 @@
 		438DC11225B8420F00FF52D9 /* AbstractViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438DC11125B8420E00FF52D9 /* AbstractViewController.swift */; };
 		43ADF13925B437B100192D11 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 43ADF13B25B437B100192D11 /* Localizable.strings */; };
 		43ADF14925B439C000192D11 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ADF14825B439C000192D11 /* StringUtils.swift */; };
+		43F1EDBA25E5F32800930805 /* SearchMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F1EDB925E5F32800930805 /* SearchMapVC.swift */; };
 		43FDB09A25D97B2D00CDEC30 /* AbstractCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDB09925D97B2D00CDEC30 /* AbstractCollectionVC.swift */; };
 		43FDB0A325DA6D2700CDEC30 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDB0A225DA6D2700CDEC30 /* EditProfileVC.swift */; };
 		43FDB0A825DA7B5700CDEC30 /* EditImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDB0A725DA7B5700CDEC30 /* EditImageCell.swift */; };
@@ -135,6 +136,7 @@
 		43ADF13A25B437B100192D11 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		43ADF13F25B437B500192D11 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		43ADF14825B439C000192D11 /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
+		43F1EDB925E5F32800930805 /* SearchMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapVC.swift; sourceTree = "<group>"; };
 		43FDB09925D97B2D00CDEC30 /* AbstractCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractCollectionVC.swift; sourceTree = "<group>"; };
 		43FDB0A225DA6D2700CDEC30 /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		43FDB0A725DA7B5700CDEC30 /* EditImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditImageCell.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				432B988A25BD8C0800CD4CCC /* MapViewController.swift */,
 				4332CDE525CAA5A500C730E5 /* BottomSheetViewController.swift */,
 				4332CDE625CAA5A500C730E5 /* BottomSheetViewController.xib */,
+				43F1EDB925E5F32800930805 /* SearchMapVC.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -746,6 +749,7 @@
 				4341519325E252DB007BD740 /* UserSearchCell.swift in Sources */,
 				43ADF14925B439C000192D11 /* StringUtils.swift in Sources */,
 				438C532D25B3F5300092BE5B /* LoginController.swift in Sources */,
+				43F1EDBA25E5F32800930805 /* SearchMapVC.swift in Sources */,
 				4332CD7725C6AD6100C730E5 /* ProfileViewController.swift in Sources */,
 				435444A225D2417B00144BAE /* LocationUtils.swift in Sources */,
 				4332CDAB25C9A86300C730E5 /* NotificationExt.swift in Sources */,
