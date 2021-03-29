@@ -10,6 +10,8 @@ import FirebaseAuth
 
 protocol ProfileHeaderDelegate {
     func editTap()
+    func changeToListView()
+    func changeToStatisticView()
 }
 
 class ProfileHeader: UICollectionViewCell {
@@ -51,6 +53,22 @@ class ProfileHeader: UICollectionViewCell {
         return label
     }()
     
+    private lazy var listBtn: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setImage(UIImage(named: "list"), for: .normal)
+        btn.tintColor = .mainBlue
+        btn.addTarget(self, action: #selector(listViewHandle), for: .touchUpInside)
+        return btn
+    }()
+    
+    private lazy var statisticBtn: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setImage(UIImage(named: "chart-outline"), for: .normal)
+        btn.tintColor = UIColor(white: 0, alpha: 0.2)
+        btn.addTarget(self, action: #selector(statisticViewHandle), for: .touchUpInside)
+        return btn
+    }()
+    
     private let padding: CGFloat = 12
     
     static var headerId = "ProfileHeaderId"
@@ -66,18 +84,20 @@ class ProfileHeader: UICollectionViewCell {
     }
     
     private func sharedInit(){
-
+        debugPrint("sharedInit")
         addSubview(profileImageView)
         profileImageView.anchor(top: topAnchor, left: leftAnchor, paddingTop: padding, paddingLeft: padding, width: 80, height: 80)
         profileImageView.layer.cornerRadius = 80 / 2
                 
         addSubview(usernameLabel)
-        usernameLabel.anchor(top: profileImageView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 4, paddingLeft: padding, paddingRight: padding)
+        usernameLabel.anchor(top: profileImageView.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 4, paddingLeft: padding, paddingRight: padding)
 
         layoutUserStatsView()
 
         addSubview(followButton)
-        followButton.anchor(top: postsLabel.bottomAnchor, left: postsLabel.leftAnchor, right: followingLabel.rightAnchor, paddingTop: 2, height: 34)        
+        followButton.anchor(top: postsLabel.bottomAnchor, left: postsLabel.leftAnchor, right: followingLabel.rightAnchor, paddingTop: 2, height: 34)
+        
+        layoutBottomToolbar()
     }
 
     private func layoutUserStatsView() {
@@ -87,24 +107,24 @@ class ProfileHeader: UICollectionViewCell {
         stackView.anchor(top: topAnchor, left: profileImageView.rightAnchor, right: rightAnchor, paddingTop: padding, paddingLeft: padding, paddingRight: padding, height: 50)
     }
     
-//    private func layoutBottomToolbar() {
-//        let topDividerView = UIView()
-//        topDividerView.backgroundColor = UIColor(white: 0, alpha: 0.2)
-//
-//        let bottomDividerView = UIView()
-//        bottomDividerView.backgroundColor = UIColor(white: 0, alpha: 0.2)
-//
-//        let stackView = UIStackView(arrangedSubviews: [gridButton, listButton, bookmarkButton])
-//        stackView.distribution = .fillEqually
-//
-//        addSubview(stackView)
-//        addSubview(topDividerView)
-//        addSubview(bottomDividerView)
-//
-//        topDividerView.anchor(top: stackView.topAnchor, left: leftAnchor, right: rightAnchor, height: 0.5)
-//        bottomDividerView.anchor(top: stackView.bottomAnchor, left: leftAnchor, right: rightAnchor, height: 0.5)
-//        stackView.anchor(left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, height: 44)
-//    }
+    private func layoutBottomToolbar() {
+        let topDividerView = UIView()
+        topDividerView.backgroundColor = UIColor(white: 0, alpha: 0.2)
+
+        let bottomDividerView = UIView()
+        bottomDividerView.backgroundColor = UIColor(white: 0, alpha: 0.2)
+
+        let stackView = UIStackView(arrangedSubviews: [listBtn, statisticBtn])
+        stackView.distribution = .fillEqually
+
+        addSubview(stackView)
+        addSubview(topDividerView)
+        addSubview(bottomDividerView)
+
+        topDividerView.anchor(top: stackView.topAnchor, left: leftAnchor, right: rightAnchor, height: 0.5)
+        bottomDividerView.anchor(top: stackView.bottomAnchor, left: leftAnchor, right: rightAnchor, height: 0.5)
+        stackView.anchor(top: usernameLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 5, paddingBottom: 10, height: 44)
+    }
     
     func reloadData() {
         guard let user = user else { return }
@@ -195,6 +215,18 @@ class ProfileHeader: UICollectionViewCell {
         }
         
         NotificationCenter.default.post(name: .updateProfilePost, object: nil)
+    }
+    @objc private func listViewHandle(){
+        debugPrint("listViewHandle")
+        listBtn.tintColor = UIColor.mainBlue
+        statisticBtn.tintColor = UIColor(white: 0, alpha: 0.2)
+        delegate?.changeToListView()
+    }
+    @objc private func statisticViewHandle(){
+        debugPrint("statisticViewHandle")
+        statisticBtn.tintColor = UIColor.mainBlue
+        listBtn.tintColor = UIColor(white: 0, alpha: 0.2)
+        delegate?.changeToStatisticView()
     }
 }
 

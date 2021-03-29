@@ -57,6 +57,8 @@
 		43ADF13925B437B100192D11 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 43ADF13B25B437B100192D11 /* Localizable.strings */; };
 		43ADF14925B439C000192D11 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ADF14825B439C000192D11 /* StringUtils.swift */; };
 		43F1EDBA25E5F32800930805 /* SearchMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F1EDB925E5F32800930805 /* SearchMapVC.swift */; };
+		43F1EDF425E621D300930805 /* ProfileStatisticCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F1EDF225E621D300930805 /* ProfileStatisticCell.swift */; };
+		43F1EDF525E621D300930805 /* ProfileStatisticCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43F1EDF325E621D300930805 /* ProfileStatisticCell.xib */; };
 		43FDB09A25D97B2D00CDEC30 /* AbstractCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDB09925D97B2D00CDEC30 /* AbstractCollectionVC.swift */; };
 		43FDB0A325DA6D2700CDEC30 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDB0A225DA6D2700CDEC30 /* EditProfileVC.swift */; };
 		43FDB0A825DA7B5700CDEC30 /* EditImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDB0A725DA7B5700CDEC30 /* EditImageCell.swift */; };
@@ -137,6 +139,8 @@
 		43ADF13F25B437B500192D11 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		43ADF14825B439C000192D11 /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 		43F1EDB925E5F32800930805 /* SearchMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapVC.swift; sourceTree = "<group>"; };
+		43F1EDF225E621D300930805 /* ProfileStatisticCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatisticCell.swift; sourceTree = "<group>"; };
+		43F1EDF325E621D300930805 /* ProfileStatisticCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileStatisticCell.xib; sourceTree = "<group>"; };
 		43FDB09925D97B2D00CDEC30 /* AbstractCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractCollectionVC.swift; sourceTree = "<group>"; };
 		43FDB0A225DA6D2700CDEC30 /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		43FDB0A725DA7B5700CDEC30 /* EditImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditImageCell.swift; sourceTree = "<group>"; };
@@ -328,6 +332,8 @@
 			children = (
 				4332CD7B25C6C0BD00C730E5 /* ProfileHeader.swift */,
 				4332CD8C25C7A95900C730E5 /* ProfileEmptyStateCell.swift */,
+				43F1EDF225E621D300930805 /* ProfileStatisticCell.swift */,
+				43F1EDF325E621D300930805 /* ProfileStatisticCell.xib */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -574,6 +580,7 @@
 			files = (
 				43ADF13925B437B100192D11 /* Localizable.strings in Resources */,
 				4332CDE825CAA5A500C730E5 /* BottomSheetViewController.xib in Resources */,
+				43F1EDF525E621D300930805 /* ProfileStatisticCell.xib in Resources */,
 				438C533225B3F5330092BE5B /* Assets.xcassets in Resources */,
 				438C533025B3F5300092BE5B /* Main.storyboard in Resources */,
 				4332CCBC25C1747A00C730E5 /* GoogleService-Info.plist in Resources */,
@@ -746,6 +753,7 @@
 				4332CDB025C9A87400C730E5 /* DateTimeExt.swift in Sources */,
 				4318B30125B58D0C001B8B9E /* CustomTextField.swift in Sources */,
 				4318B2F225B53F87001B8B9E /* FirebaseAuthManager.swift in Sources */,
+				43F1EDF425E621D300930805 /* ProfileStatisticCell.swift in Sources */,
 				4341519325E252DB007BD740 /* UserSearchCell.swift in Sources */,
 				43ADF14925B439C000192D11 /* StringUtils.swift in Sources */,
 				438C532D25B3F5300092BE5B /* LoginController.swift in Sources */,

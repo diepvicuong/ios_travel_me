@@ -14,7 +14,9 @@ class ProfileViewController: AbstractCollectionVC {
 //    var posts = [Post]()
 
     private var header: ProfileHeader?
-
+    private let headerHeight: CGFloat = 200
+    
+    private var isStatistic = false
     
     var user: User?{
         didSet{
@@ -50,6 +52,7 @@ class ProfileViewController: AbstractCollectionVC {
         collectionView?.register(ProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileHeader.headerId)
         collectionView?.register(HomePostCollectionViewCell.self, forCellWithReuseIdentifier: HomePostCollectionViewCell.cellId)
         collectionView?.register(ProfileEmptyStateCell.self, forCellWithReuseIdentifier: ProfileEmptyStateCell.cellId)
+        collectionView?.register(UINib(nibName: "ProfileStatisticCell", bundle: nil), forCellWithReuseIdentifier: "ProfileStatisticCell")
         collectionView?.delegate = self
         collectionView?.dataSource = self
     }
@@ -109,10 +112,10 @@ class ProfileViewController: AbstractCollectionVC {
 
 extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if posts.count == 0{
+        if posts.count == 0 || isStatistic{
             return 1
         }
-        
+
         return posts.count
     }
     
@@ -121,7 +124,10 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileEmptyStateCell.cellId, for: indexPath)
             return cell
         }
-        
+        if isStatistic{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileStatisticCell", for: indexPath) as! ProfileStatisticCell
+            return cell
+        }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomePostCollectionViewCell.cellId, for: indexPath) as! HomePostCollectionViewCell
         cell.post = posts[indexPath.item]
         cell.delegate = self
@@ -152,9 +158,16 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if posts.count == 0{
-            let emptyStateCellHeight = (view.safeAreaLayoutGuide.layoutFrame.height - 150)
+            let emptyStateCellHeight = (view.safeAreaLayoutGuide.layoutFrame.height - headerHeight)
             return CGSize(width: view.frame.width, height: emptyStateCellHeight)
         }else{
+            if isStatistic{
+                let statisticCell = ProfileStatisticCell(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 1000))
+                statisticCell.layoutIfNeeded()
+                let height =  statisticCell.bounds.height
+                return CGSize(width: view.frame.width, height: height)
+            }
+            
             let dummyCell = HomePostCollectionViewCell(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 1000))
             dummyCell.post = posts[indexPath.item]
             dummyCell.layoutIfNeeded()
@@ -173,11 +186,21 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout{
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: view.frame.width, height: 150)
+        return CGSize(width: view.frame.width, height: headerHeight)
     }
 }
 
 extension ProfileViewController: ProfileHeaderDelegate{
+    func changeToListView() {
+        isStatistic = false
+        collectionView?.reloadData()
+    }
+    
+    func changeToStatisticView() {
+        isStatistic = true
+        collectionView?.reloadData()
+    }
+    
     func editTap() {
         debugPrint("edit tapped")
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)

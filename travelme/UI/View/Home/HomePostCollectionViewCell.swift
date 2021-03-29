@@ -142,7 +142,7 @@ class HomePostCollectionViewCell: UICollectionViewCell{
     
     private func configPostState(){
         guard let post = post else {return}
-        debugPrint("startDate:", post.startDate)
+//        debugPrint("startDate:", post.startDate)
 //        let day = Calendar.current.component(.day, from: post.startDate)
 //        let month = Calendar.current.component(.month, from: post.startDate)
 //        let year = Calendar.current.component(.year, from: post.startDate)
@@ -152,7 +152,7 @@ class HomePostCollectionViewCell: UICollectionViewCell{
         let yearStr = post.startDate.year
         startDateLabel.setTitle("\(monthStr),\(yearStr)")
         startDateLabel.setValue(dayStr)
-        debugPrint("Count:", post.countDate)
+//        debugPrint("Count:", post.countDate)
         numOfDayLabel.setValue(post.countDate)
 
     }

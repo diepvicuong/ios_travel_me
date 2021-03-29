@@ -54,15 +54,23 @@ class HomeViewController: AbstractCollectionVC {
     }
     
     @objc func logoutTapped(){
-        GIDSignIn.sharedInstance()?.signOut()
-        do{
-            try Auth.auth().signOut()
-            gotoLogin()
-            
-        }catch let error as NSError{
-            // %@ - string value and for many more.
-        print ("Error signing out from Firebase: %@", error)
+        let ac = UIAlertController(title: "Logout".localized(), message: "Do you want to logout?".localized(), preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default){[weak self] _ in
+            GIDSignIn.sharedInstance()?.signOut()
+            do{
+                try Auth.auth().signOut()
+                self?.gotoLogin()
+                
+            }catch let error as NSError{
+                // %@ - string value and for many more.
+            print ("Error signing out from Firebase: %@", error)
+            }
         }
+        let cancelAction = UIAlertAction(title: "Cancel".localized(), style: .cancel, handler: nil)
+        ac.addAction(okAction)
+        ac.addAction(cancelAction)
+        present(ac, animated: true)
+       
     }
     
     @objc private func handleRefresh() {
