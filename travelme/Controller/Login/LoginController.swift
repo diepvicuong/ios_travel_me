@@ -69,7 +69,7 @@ class LoginController: AbstractViewController {
 
         self.title = "Login"
         
-        lbAppName.text = "Connected Car".uppercased()
+        lbAppName.text = "Travel Me".uppercased()
         btnLogin.setTitle("Login".localized(), for: .normal)
         btnSignUp.setTitle("Don't have an account? Sign up".localized(), for: .normal)
         
