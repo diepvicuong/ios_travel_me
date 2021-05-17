@@ -1,4 +1,5 @@
-# ✈️ ✈️ Travel Me - Everywhere you go, many things you learn ✈️ ✈️
+# ✈️ ✈️ Travel Me ✈️ ✈️
+📌📌📌 Everywhere you go, many things you learn
 
 ### Support App
 
@@ -6,7 +7,7 @@
 > 
 ### 💻 Requirements
 
-- MacOS Operating System
+- MacOS
 - Xcode
 - A little knowledge of Swift and OOP
 
